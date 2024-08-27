@@ -1,0 +1,26 @@
+.tab__section{
+  border-bottom: 1px solid #dcdcdc;
+  display: flex;
+  margin-bottom: 40px;
+  padding: 0 10px;
+}
+
+.action__btn{
+  margin-bottom: 16px;
+  padding: 5px 10px;
+  border: 1px solid #079AFF;
+  color: #079AFF;
+  background: transparent;
+  border-radius: 9999px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+.consent-dashboard{
+  padding-top: 20px;
+}
+
+.tab__item{
+  padding-right: 30px;
+  font-size: 22px;
+  cursor: pointer;
+}

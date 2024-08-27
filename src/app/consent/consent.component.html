@@ -1,0 +1,10 @@
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/primeicons/6.0.0/primeicons.min.css">
+</head>
+<div class="consent-dashboard">
+  <div class="tab__section">
+    <div id="consent-active" class="tab__item" (click)="OnActiveConsentClick()"> Active Consents</div>
+    <div id="consent-inactive" class="tab__item" (click)="OnInActiveConsentClick()"> Inactive Consents</div>
+  </div>
+  <button type="button" class="action__btn"><em class="pi pi-refresh" (click)="OnRefreshClick()"></em> Refresh  </button>
+</div>

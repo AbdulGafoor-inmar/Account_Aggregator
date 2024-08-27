@@ -1,0 +1,24 @@
+.no__accounts__section{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.nodata__card{
+  font-size: 25px;
+  padding-top: 50px;
+  padding-bottom: 30px;
+}
+
+.primary-button{
+  font-size: 20px;
+  color: #079AFF;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.plus-icon{
+  padding-right: 10px;
+}
