@@ -16,7 +16,10 @@
 .dashboard-section {
   display: flex;
   padding-top: 20px;
-  /*justify-content: center;*/
+  font-size: 18px;
+  font-weight: 550;
+  color: rgb(52, 60, 106);
+  flex-direction: column;
 }
 
 .ele-count {
@@ -56,4 +59,167 @@
   display: flex;
   justify-content: center;
   padding-top: 20px;
+  text-decoration: none;
+}
+.credit-cards-section{
+  padding-bottom: 20px;
+}
+.credit-card {
+  width: 400px;
+  height: 250px; /* Increased height to accommodate the bank account section */
+  background: linear-gradient(to right top, rgb(76, 73, 237) 30%, rgb(10, 6, 244));
+  color: #fff;
+  border-radius: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  margin: 20px;
+}
+.card-info {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.balance, .card-holder, .valid-thru{
+  font-size: 12px;
+}
+.content{
+  padding-bottom: 20px;
+}
+
+.card-number {
+  letter-spacing: 2px;
+  border-top: 1px solid rgb(223, 234, 242);
+}
+
+.bank-account {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  font-size: 14px;
+}
+.middle-card{
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 20px;
+}
+.balance-chip{
+  display: flex;
+  padding-right: 20px;
+  padding-top: 10px;
+  justify-content: space-between;
+}
+.accnum-venn{
+  display: flex;
+  justify-content: space-between;
+  padding-right: 20px;
+}
+.mycards-details{
+  display: flex;
+}
+.second-card{
+  background: white;
+  color: #343c6a;
+}
+.cards-content{
+  display: flex;
+  justify-content: space-between;
+}
+.remaining-cards{
+  cursor: pointer;
+}
+.recent-transactions-details{
+  width: 850px;
+  height: 300px; /* Increased height to accommodate the bank account section */
+  background: white;
+  color: #343c6a;
+  border-radius: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  margin: 20px;
+  padding:30px;
+}
+.trans-details{
+  padding: 20px;
+  font-weight: 100;
+  color: #343c6a;
+}
+.trans-date{
+  color: #718ebf;
+  font-size: 15px;
+}
+.trans-money{
+  display: flex;
+  justify-content: space-between;
+}
+.trans-money-debit{
+  padding: 20px;
+  color: #fe5c73;
+  font-weight: 400;
+}
+.trans-money-credit{
+  padding: 20px;
+  color: #41d4a8;
+  font-weight: 400;
+}
+
+.chart-container {
+  text-align: center;
+  width: 400px;
+  margin: 20px;
+}
+
+.chart {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 200px;
+  width: 520px;
+  border-radius: 30px;
+  background-color: #fff;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bar-container {
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bar {
+  background-color: #007bff;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.deposit {
+  background-color: #28a745;
+}
+
+.withdrawal {
+  background-color: #dc3545;
+}
+
+.label {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #666;
+}
+.chart-container {
+  text-align: center;
+  width: 450px;
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #333;
 }

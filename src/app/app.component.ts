@@ -13,13 +13,9 @@ export class AppComponent {
 
   }
 
-
-
-
-
-
   OnDashboardClick(): void {
     this.router.navigate(['/dashboard']);
+
   }
   OnConsentsClick(): void {
     this.router.navigate(['/consents']);

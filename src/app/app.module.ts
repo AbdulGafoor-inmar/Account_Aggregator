@@ -9,16 +9,18 @@ import { AccountsComponent } from './accounts/accounts.component';
 import {RouterModule, Routes} from "@angular/router";
 import { ActiveConsentComponent } from './consent/active-consent/active-consent.component';
 import { InactiveConsentComponent } from './consent/inactive-consent/inactive-consent.component';
+import { AddNewBankAccountComponent } from './add-new-bank-account/add-new-bank-account.component';
 
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-  {path: 'homepage', pathMatch: 'full' ,component: AppComponent},
+  {path: 'homepage', pathMatch: 'full' ,component: DashboardComponent },
   { path: 'dashboard', pathMatch: 'full' , component: DashboardComponent },
   { path: 'consents', pathMatch: 'full' , component: ConsentComponent },
   { path: 'accounts', pathMatch: 'full' , component: AccountsComponent },
-  { path: 'activeconsents', pathMatch: 'full' , component: ActiveConsentComponent },
-  { path: 'inactiveconsents', pathMatch: 'full' , component: InactiveConsentComponent },
+  { path: 'active-consents', pathMatch: 'full' , component: ActiveConsentComponent },
+  { path: 'inactive-consents', pathMatch: 'full' , component: InactiveConsentComponent },
+  { path: 'add-bankaccount', pathMatch: 'full' , component: AddNewBankAccountComponent },
 ];
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ const appRoutes: Routes = [
     ConsentComponent,
     AccountsComponent,
     ActiveConsentComponent,
-    InactiveConsentComponent
+    InactiveConsentComponent,
+    AddNewBankAccountComponent
   ],
   imports: [
     BrowserModule,
