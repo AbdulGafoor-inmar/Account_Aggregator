@@ -175,7 +175,7 @@
   display: flex;
   justify-content: space-around;
   align-items: flex-end;
-  height: 200px;
+  height: 250px;
   width: 520px;
   border-radius: 30px;
   background-color: #fff;
@@ -202,11 +202,14 @@
 }
 
 .deposit {
-  background-color: #28a745;
+  background-color: #41d4a8;
 }
 
 .withdrawal {
-  background-color: #dc3545;
+  background-color: #fe5c73;
+}
+.weekly-statistics{
+  display: flex;
 }
 
 .label {
@@ -219,7 +222,125 @@
   width: 450px;
 }
 
-h2 {
-  margin-bottom: 20px;
-  color: #333;
+.pie-chart {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: conic-gradient(#FF6384 0% 20%, #36A2EB 20% 40%, #FFCE56 40% 60%, #4BC0C0 60% 80%, #9966FF 80% 100%);
+  position: relative;
+  margin-top: 15px;
+}
+
+.pie-chart::before {
+  content: '';
+  width: 50%;
+  height: 50%;
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 25%;
+  left: 25%;
+}
+
+.slice {
+  position: absolute;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  transform: translate(-50%, -50%);
+}
+
+.slice-1 { top: 21%; left: 72%; }
+.slice-2 { top: 58%; left: 85%; }
+.slice-3 { bottom: 5%; left: 50%; }
+.slice-4 { bottom: 37%; left: 13%; }
+.slice-5 { top: 20%; left: 30%; }
+
+.expense-stats{
+margin-left: 15%
+}
+.next-arrow-btn{
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  outline: 0px;
+  margin: 36px 9.2px 0px 8px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  appearance: none;
+  text-decoration: none;
+  text-align: center;
+  flex: 0 0 auto;
+  overflow: visible;
+  color: rgb(113, 142, 191);
+  transition: 0.3s ease-in-out;
+  padding: 13px;
+  font-size: 2.625rem;
+  z-index: 1;
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0.03) 0px 1px 1px 0px, rgba(0, 0, 0, 0.09) 2px 2px 10px 0px;
+  border-radius: 150px;
+  border: 1px solid;
+}
+
+.quick-transfer{
+  display: flex;
+  justify-content: space-between;
+}
+.user-image-transfer{
+border-radius: 100px;
+}
+.user-details-transfer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 20px;
+}
+.trans-amount{
+  display: flex;
+  margin-top: 10%;
+  padding-left: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+.enter-money{
+  text-decoration: none;
+  background-color: #e7ecf1;
+  border-radius: 100px;
+  padding: 5px 15px;
+  width: 225px;
+  display: flex;
+  align-items: center;
+  border: none;
+  outline: none;
+}
+.enter-money-details{
+  display: flex;
+  text-decoration: none;
+  background-color: #e7ecf1;
+  border-radius: 100px;
+  padding: 1px 32px;
+  width: 225px;
+  border: 1px;
+  justify-content: center;
+}
+.send-button{
+  display: inline-flex;
+  cursor: pointer;
+  min-width: 101px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(24, 20, 243);
+  font-size: 0.9385rem;
+  line-height: 2.6;
+  border-radius: inherit;
+  justify-content: center;
+  align-items: center;
+  margin-left: -6%;
 }
