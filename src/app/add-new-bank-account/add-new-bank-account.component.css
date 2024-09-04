@@ -1,0 +1,120 @@
+body {
+  font-family: Inter, sans-serif;
+  color: #fff;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  width: 850px;
+  height: 715px; /* Increased height to accommodate the bank account section */
+  color: #343c6a;
+  border-radius: 30px;
+  position: relative;
+  overflow: hidden;
+  margin: 20px;
+  padding:30px;
+}
+
+h2 {
+  color: #6c5ce7;
+}
+
+.steps {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.step {
+  width: 45%;
+  text-align: center;
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid;
+}
+
+.step.active {
+  background-color: #4caf50;
+  font-weight: 600;
+}
+
+.search-bar {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 20px;
+}
+
+.institutions {
+  max-height: 400px; /* Set the max height of the container */
+  overflow-y: auto; /* Add vertical scroll bar */
+  padding: 10px; /* Add padding inside the container */
+  margin: 0 auto; /* Center the container if needed */
+  border: 1px solid #ddd; /* Optional: Add a border to the container */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a slight shadow for depth */
+}
+
+.institution {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 15px; /* Space between institutions */
+  background-color: #f9f9f9; /* Background color of each institution */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth background color transition on hover */
+}
+
+.institution:hover {
+  background-color: #f0f0f0; /* Change background on hover */
+}
+
+.institution img {
+  margin-right: 15px; /* Space between the image and the details */
+}
+
+.institution-details {
+  flex-grow: 1; /* Make the details take up the remaining space */
+}
+
+.institution-details h3 {
+  margin: 0;
+  font-size: 16px; /* Adjust font size */
+  color: #333; /* Text color */
+}
+
+.institution-details p {
+  margin: 5px 0 10px;
+  color: #666; /* Secondary text color */
+}
+
+.mobile-requirement {
+  font-size: 12px;
+  color: #999; /* Light text for additional info */
+}
+
+.selected-institutions {
+  margin-top: 20px;
+}
+
+.btn-continue, .btn-cancel {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-continue {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.btn-cancel {
+  background-color: #f44336;
+  color: #fff;
+  margin-left: 10px;
+}

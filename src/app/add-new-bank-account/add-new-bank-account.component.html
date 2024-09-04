@@ -1,1 +1,45 @@
-<p>add-new-bank-account works!</p>
+<div class="container">
+  <h2>Hello {{ username }}! Let’s take you through two quick steps to link your financial Accounts.</h2>
+  <p>Please select the financial institution to proceed with account discovery.</p>
+
+  <div class="steps">
+    <div class="step active">
+      <span>01</span> Select Financial Institutions
+    </div>
+    <div class="step">
+      <span>02</span> Discover & Link Accounts
+    </div>
+  </div>
+
+  <input
+    type="text"
+    placeholder="Search Across (Types of Institution Filter)"
+    class="search-bar">
+
+  <div class="institutions">
+    <div class="institution" *ngFor="let institution of banksList.fipList" (click)="selectInstitution(institution)">
+      <ng-container *ngIf="institution.logoUrl; else fallbackIcon">
+        <img [src]="institution.logoUrl" height="60px" style="padding-right: 30px" [alt]="institution.fipName">
+      </ng-container>
+      <ng-template #fallbackIcon>
+        <i class="fas fa-university" style="font-size: 60px; padding-right: 30px"></i> <!-- Fallback icon -->
+      </ng-template>
+      <div class="institution-details">
+        <h3>{{ institution.fipName }}</h3>
+        <p>{{ institution.FIs }}</p>
+        <span class="mobile-requirement">Requires mobile number</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="selected-institutions">
+    <h3>Selected Financial Institutions</h3>
+    <ul>
+<!--      <li *ngFor="let selected of selectedInstitutions">{{ selected.name }}</li>-->
+    </ul>
+  </div>
+
+  <button class="btn-continue" (click)="continue()">Continue</button>
+  <button class="btn-cancel" (click)="cancel()">Cancel</button>
+</div>

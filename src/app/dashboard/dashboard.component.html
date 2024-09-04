@@ -1,5 +1,53 @@
 <div class="dashboard-section">
 
+  <div class="balance-card">
+    <div class="balance-info">
+      <p class="balance-label">Total Balance</p>
+      <p class="balance-amount">₹ 7,92,500</p>
+    </div>
+    <div class="balance-image">
+      <img alt="" class="bl" loading="eager" role="presentation" src="https://miro.medium.com/v2/resize:fit:700/1*kF-gnSzLD3e34sCr70rUEA.png">
+    </div>
+  </div>
+
+  <div class="accounts-sections">
+    <div class="acounts-content cards-content">
+      <div>Accounts</div>
+      <div class="remaining-cards"><a href="accounts" onClick="OnAccountsClick()" style="text-decoration: none">See All</a></div>
+    </div>
+
+    <div class="account-details recent-transactions-details">
+      <div class="account-header">
+        <span class="bank-name">Bank Name</span>
+        <span class="account-type">Account Type</span>
+        <span class="account-balance-header">Balance</span>
+      </div>
+      <div class="account-item">
+        <span class="bank-name"><img src="https://www.onemoney.in/docs/img/bank_icons/axisbank_icon.png" height="30px"><div>&nbsp;Axis Bank Ltd</div></span>
+        <span class="account-type">Savings</span>
+        <span class="account-balance">₹&nbsp;10,000</span>
+      </div>
+      <div class="account-item">
+        <span class="bank-name"><img src="https://www.onemoney.in/docs/img/bank_icons/hdfcbank_icon.jpg" height="30px"><div>&nbsp;HDFC Bank Ltd</div></span>
+        <span class="account-type">Current</span>
+        <span class="account-balance">₹&nbsp;2,500</span>
+      </div>
+      <div class="account-item">
+        <span class="bank-name"><img src="https://www.onemoney.in/docs/img/bank_icons/bank_of_india_icon.png" height="30px"><div>&nbsp;Bank of India</div></span>
+        <span class="account-type">Fixed Deposit</span>
+        <span class="account-balance">₹&nbsp;20,000</span>
+      </div>
+      <div class="account-item">
+        <span class="bank-name"><img src="https://www.onemoney.in/docs/img/bank_icons/sbi_bank_icon.png" height="30px"><div>&nbsp;State Bank of India</div></span>
+        <span class="account-type">Salary</span>
+        <span class="account-balance">₹&nbsp;60,000</span>
+      </div>
+<br>
+      <div><a class="link-account-button" href="add-bankaccount"><i class="fa-solid fa-circle-plus"></i> Link a Bank Account</a></div>
+
+    </div>
+  </div>
+
   <div class="credit-cards-section">
     <div class="cards-content">
       <div>My Cards</div>
@@ -12,7 +60,7 @@
             <div class="balance-chip">
               <div>
                 <div class="balance">Balance</div>
-                <div>₹5,76,837</div>
+                <div>₹2,00,000</div>
               </div>
               <div class="chip">
                 <img src="assets/images/chip (2).png" height="50" alt="Profile - Logo" class="profile__image">
@@ -29,8 +77,7 @@
               </div>
             </div>
           </div>
-          <div class="card-number">3778 **** **** 1234 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <img
-            src="assets/images/venn-diagram.png" height="50" alt="Profile - Logo"></div>
+          <div class="card-number">5778 **** **** 1234 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i class="fa-brands fa-cc-visa" style="font-size: 50px"></i></div>
         </div>
       </div>
 
@@ -40,7 +87,7 @@
             <div class="balance-chip">
               <div>
                 <div class="balance">Balance</div>
-                <div>₹5,72,762</div>
+                <div>₹5,00,000</div>
               </div>
               <div class="chip">
                 <img src="assets/images/chip (2).png" height="50" alt="Profile - Logo" class="profile__image">
@@ -49,7 +96,7 @@
             <div class="middle-card">
               <div>
                 <div class="card-holder">CARD HOLDER</div>
-                <div class="content"> Anand Teja</div>
+                <div class="content"> Abdul Gafoor</div>
               </div>
               <div>
                 <div class="valid-thru">VALID THRU</div>
@@ -57,15 +104,17 @@
               </div>
             </div>
           </div>
-          <div class="card-number">3738 **** **** 1844 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <img
-            src="assets/images/venn-diagram.png" height="50" alt="Profile - Logo"></div>
+          <div class="card-number">5738 **** **** 1844 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i class="fa-brands fa-cc-stripe" style="font-size: 50px"></i></div>
         </div>
       </div>
     </div>
   </div>
 
   <div class="recent-transactions">
-    <div> Recent Transactions</div>
+    <div class="cards-content">
+      <div>Recent Transactions</div>
+      <div class="remaining-cards">See All</div>
+    </div>
     <div class="recent-transactions-details">
       <div class="trans-money">
         <div class="trans-details">Johnny Depp
@@ -139,42 +188,6 @@
         <div class="slice slice-3">20%<br>Others</div>
         <div class="slice slice-4">30%<br>Savings</div>
         <div class="slice slice-5">20%<br>Entertainment</div>
-      </div>
-    </div>
-  </div>
-
-  <div>
-    Quick Transfer
-
-    <div class="recent-transactions-details">
-      <div class="quick-transfer">
-        <div class="user-details-transfer"><img class="user-image-transfer" src="assets/images/Abdul profile.jpg"
-                                                height="140" alt="Profile">
-          <div style="padding-top: 12px;">Abdul Gafoor</div>
-        </div>
-        <div class="user-details-transfer"><img class="user-image-transfer" src="assets/images/Anand profile.png"
-                                                height="140" alt="Profile">
-          <div style="padding-top: 12px;">Anand Teja</div>
-        </div>
-        <div class="user-details-transfer"><img class="user-image-transfer" src="assets/images/Aravind profile.png"
-                                                height="140" alt="Profile">
-          <div style="padding-top: 12px;">Aravind Kumar</div>
-        </div>
-        <div class="user-details-transfer"><img class="user-image-transfer" src="assets/images/Sandeep Profile.png"
-                                                height="140" alt="Profile">
-          <div style="padding-top: 12px;">Sandeep Nayak</div>
-        </div>
-
-        <div><i class="fa-solid fa-angle-right next-arrow-btn" title="See All"></i></div>
-      </div>
-      <div class="trans-amount">
-        <div>
-          Write Amount
-        </div>
-        <div class="enter-money-details">
-          <input class="enter-money" type="text" placeholder="525.50">
-          <a class="send-button">Send &nbsp; <i class="fa-regular fa-paper-plane"></i></a>
-        </div>
       </div>
     </div>
   </div>
