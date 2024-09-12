@@ -23,4 +23,7 @@ export class AppComponent {
   OnAccountsClick(): void {
     this.router.navigate(['/accounts']);
   }
+  OnTransactionsClick(): void {
+    this.router.navigate(['/accounts']);
+  }
 }

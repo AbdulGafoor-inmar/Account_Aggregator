@@ -12,6 +12,7 @@ import {RouterModule, Routes} from "@angular/router";
 import { ActiveConsentComponent } from './consent/active-consent/active-consent.component';
 import { InactiveConsentComponent } from './consent/inactive-consent/inactive-consent.component';
 import { AddNewBankAccountComponent } from './add-new-bank-account/add-new-bank-account.component';
+import { TransactionsComponent } from './transactions/transactions.component';
 
 
 const appRoutes: Routes = [
@@ -23,6 +24,7 @@ const appRoutes: Routes = [
   { path: 'active-consents', pathMatch: 'full' , component: ActiveConsentComponent },
   { path: 'inactive-consents', pathMatch: 'full' , component: InactiveConsentComponent },
   { path: 'add-bankaccount', pathMatch: 'full' , component: AddNewBankAccountComponent },
+  { path: 'transactions', pathMatch: 'full' , component: TransactionsComponent },
 ];
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ const appRoutes: Routes = [
     AccountsComponent,
     ActiveConsentComponent,
     InactiveConsentComponent,
-    AddNewBankAccountComponent
+    AddNewBankAccountComponent,
+    TransactionsComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,6 @@ const appRoutes: Routes = [
     ),
   ],
   providers: [
-    provideClientHydration()
   ],
   bootstrap: [AppComponent]
 })

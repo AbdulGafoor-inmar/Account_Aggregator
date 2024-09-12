@@ -38,8 +38,8 @@ export class AddNewBankAccountComponent implements OnInit {
   selectedInstitutions = [];
 
   selectInstitution(institution: any) {
-    // if (!this.selectedInstitutions.includes(institution)) {
-    //   this.selectedInstitutions.push(institution);
+    // if (!this.selectedInstitutions.includes(institution.fipName)) {
+    //   this.selectedInstitutions.push(institution.fipName);
     // }
   }
 

@@ -1,0 +1,18 @@
+﻿{
+  "accounts": [
+    {
+      "bankName": "Axis Bank Ltd",
+      "accountNumber": "1234",
+      "accountType": "Savings",
+      "accountBalance": "10000",
+      "bankIconUrl": "https://www.onemoney.in/docs/img/bank_icons/axisbank_icon.png"
+    },
+    {
+      "bankName": "HDFC Bank",
+      "accountNumber": "5678",
+      "accountType": "Current",
+      "accountBalance": "25000",
+      "bankIconUrl": "https://www.onemoney.in/docs/img/bank_icons/hdfcbank_icon.png"
+    }
+  ]
+}

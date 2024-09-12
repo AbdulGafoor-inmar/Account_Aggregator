@@ -1,9 +1,44 @@
 <div class="no__accounts__section ng-star-inserted">
   <div class="no__accounts__infographic">
-    <div class="nodata__card"> No Linked Accounts</div>
+    <div *ngIf="isData" class="nodata__card"> No Linked Accounts</div>
   </div>
-  <button id="account-link" class="primary-button flex__button">
-    <img class="plus-icon" src="assets/images/plus.png" alt="consent" height="40">
-    Add Accounts
-  </button>
+</div>
+
+<div class="accounts-sections">
+  <p style="font-size: 25px; font-weight: 600; color: #343c6a;">Your Linked Bank Accounts</p>
+
+  <div class="account-details recent-transactions-details">
+    <div class="account-header">
+      <span class="bank-name">Bank Name</span>
+      <span class="account-type">Account Type</span>
+      <span class="account-balance-header">Balance</span>
+    </div>
+    <div class="account-item">
+      <div *ngFor="let account of accounts" class="account-item">
+    <span class="bank-name">
+      <img [src]="account.bankIconUrl" alt="{{ account.bankName }}" height="30px">
+      <div>&nbsp;{{ account.bankName }} - {{ account.accountNumber }}</div>
+    </span>
+        <span class="account-type">{{ account.accountType }}</span>
+        <span class="account-balance">₹&nbsp;{{ account.accountBalance }}</span>
+      </div>
+    </div>
+    <div class="account-item">
+      <span class="bank-name"><img src="https://www.onemoney.in/docs/img/bank_icons/hdfcbank_icon.jpg" height="30px"><div>&nbsp;HDFC Bank Ltd - 5678</div></span>
+      <span class="account-type">Current</span>
+      <span class="account-balance">₹&nbsp;2,500</span>
+    </div>
+    <div class="account-item">
+      <span class="bank-name"><img src="https://www.onemoney.in/docs/img/bank_icons/bank_of_india_icon.png" height="30px"><div>&nbsp;Bank of India - 9876</div></span>
+      <span class="account-type">Fixed Deposit</span>
+      <span class="account-balance">₹&nbsp;20,000</span>
+    </div>
+    <div class="account-item">
+      <span class="bank-name"><img src="https://www.onemoney.in/docs/img/bank_icons/sbi_bank_icon.png" height="30px"><div>&nbsp;State Bank of India - 5432</div></span>
+      <span class="account-type">Salary</span>
+      <span class="account-balance">₹&nbsp;60,000</span>
+    </div>
+    <br>
+    <div><a class="link-account-button" href="add-bankaccount"><i class="fa-solid fa-circle-plus"></i> Link a Bank Account</a></div>
+  </div>
 </div>

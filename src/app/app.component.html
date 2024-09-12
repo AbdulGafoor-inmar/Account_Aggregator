@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Navigation Bar</title>
 <!-- Navbar at the top -->
 <div class="navbar">
   <h2 class="logo">My Money</h2>
@@ -34,7 +26,7 @@
   <!-- Sidebar navigation -->
   <div class="sidebar">
     <a class="nav-buttons" href="dashboard" onclick="OnDashboardClick()"><i class="fa-solid fa-house"></i>Dashboard</a>
-    <a class="nav-buttons" href="transactions"><i class="fa-solid fa-money-bill-transfer"></i>Transactions</a>
+    <a class="nav-buttons" href="transactions" onclick="OnTransactionsClick()"><i class="fa-solid fa-money-bill-transfer"></i>Transactions</a>
     <a class="nav-buttons" href="accounts" onclick="OnAccountsClick()"><i class="fa-solid fa-user"></i>Accounts</a>
     <a class="nav-buttons" href="consents" onclick="OnConsentsClick()"><i class="fa-solid fa-file-invoice"></i>Consents</a>
     <a class="nav-buttons" href="investments"><i class="fa-solid fa-money-bill-trend-up"></i>Investments</a>
@@ -45,7 +37,6 @@
     <a class="nav-buttons" href="logout"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
   </div>
 </div>
-</head>
 <body>
   <!-- Main content area -->
   <div class="content">
@@ -57,4 +48,3 @@
     </section>
   </div>
 </body>
-</html>
