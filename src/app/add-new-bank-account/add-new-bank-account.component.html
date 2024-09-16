@@ -14,35 +14,37 @@
   <input
     type="text"
     placeholder="Search Across (Types of Institution Filter)"
+    [(ngModel)]="searchTerm"
+    (input)="filterInstitutions()"
     class="search-bar">
 
+  <div class="selectbanks">
   <div class="institutions">
-    <div class="institution" *ngFor="let institution of banksList.fipList" (click)="selectInstitution(institution)">
+    <div class="institution" *ngFor="let institution of filteredInstitutions" (click)="selectInstitution(institution)">
       <ng-container *ngIf="institution.logoUrl; else fallbackIcon">
         <div style="padding-right: 30px; width: 150px; height: 60px">
-        <img [src]="institution.logoUrl" height="60px" width="150px" style="padding-right: 30px" [alt]="institution.fipName">
+          <img [src]="institution.logoUrl" height="60px" width="150px" style="padding-right: 30px" [alt]="institution.fipName">
         </div>
       </ng-container>
       <ng-template #fallbackIcon>
-        <i class="fas fa-university" style="font-size: 60px; padding-right: 30px; width: 150px; height: 60px"></i> <!-- Fallback icon -->
+        <i class="fas fa-university" style="font-size: 60px; padding-right: 30px; width: 150px; height: 60px" aria-label="Institution icon"></i>
       </ng-template>
       <div class="institution-details">
         <h3>{{ institution.fipName }}</h3>
         <p>{{ institution.FIs }}</p>
         <span class="mobile-requirement">Requires mobile number</span>
       </div>
-      <i class="fa-regular fa-circle-check checkmark"></i>
+      <i *ngIf="selectedInstitutions.includes(institution)" class="fa-regular fa-circle-check checkmark"></i>
     </div>
-
   </div>
 
   <div class="selected-institutions">
     <h3>Selected Financial Institutions</h3>
     <ul>
-<!--      <li *ngFor="let selected of selectedInstitutions">{{ selected.name }}</li>-->
+      <li *ngFor="let selected of selectedInstitutions">{{ selected.fipName }}</li>
     </ul>
+    <button class="btn-continue" (click)="continue()">Continue</button>
+    <button class="btn-cancel" (click)="cancel()">Cancel</button>
   </div>
-
-  <button class="btn-continue" (click)="continue()">Continue</button>
-  <button class="btn-cancel" (click)="cancel()">Cancel</button>
+  </div>
 </div>

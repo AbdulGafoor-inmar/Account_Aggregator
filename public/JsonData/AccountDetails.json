@@ -13,6 +13,41 @@
       "accountType": "Current",
       "accountBalance": "25000",
       "bankIconUrl": "https://www.onemoney.in/docs/img/bank_icons/hdfcbank_icon.png"
+    },
+    {
+      "bankName": "ICICI Bank",
+      "accountNumber": "1234",
+      "accountType": "Savings",
+      "accountBalance": "35000",
+      "bankIconUrl": "https://www.onemoney.in/docs/img/bank_icons/icici_bank.png"
+    },
+    {
+      "bankName": "Axis Bank",
+      "accountNumber": "9876",
+      "accountType": "Current",
+      "accountBalance": "45000",
+      "bankIconUrl": "https://www.onemoney.in/docs/img/bank_icons/axisbank_icon.png"
+    },
+    {
+      "bankName": "State Bank of India",
+      "accountNumber": "3456",
+      "accountType": "Savings",
+      "accountBalance": "27000",
+      "bankIconUrl": "https://www.onemoney.in/docs/img/bank_icons/sbi_bank_icon.png"
+    },
+    {
+      "bankName": "Yes Bank",
+      "accountNumber": "8765",
+      "accountType": "Savings",
+      "accountBalance": "32000",
+      "bankIconUrl": "https://www.onemoney.in/docs/img/bank_icons/yes_bank_icon.png"
+    },
+    {
+      "bankName": "Punjab National Bank",
+      "accountNumber": "4321",
+      "accountType": "Current",
+      "accountBalance": "22000",
+      "bankIconUrl": "https://www.onemoney.in/docs/img/bank_icons/panjab_bank_icon.png"
     }
   ]
 }

@@ -22,25 +22,13 @@
         <span class="account-type">Account Type</span>
         <span class="account-balance-header">Balance</span>
       </div>
-      <div class="account-item">
-        <span class="bank-name"><img src="https://www.onemoney.in/docs/img/bank_icons/axisbank_icon.png" height="30px"><div>&nbsp;Axis Bank Ltd</div></span>
-        <span class="account-type">Savings</span>
-        <span class="account-balance">₹&nbsp;10,000</span>
-      </div>
-      <div class="account-item">
-        <span class="bank-name"><img src="https://www.onemoney.in/docs/img/bank_icons/hdfcbank_icon.jpg" height="30px"><div>&nbsp;HDFC Bank Ltd</div></span>
-        <span class="account-type">Current</span>
-        <span class="account-balance">₹&nbsp;2,500</span>
-      </div>
-      <div class="account-item">
-        <span class="bank-name"><img src="https://www.onemoney.in/docs/img/bank_icons/bank_of_india_icon.png" height="30px"><div>&nbsp;Bank of India</div></span>
-        <span class="account-type">Fixed Deposit</span>
-        <span class="account-balance">₹&nbsp;20,000</span>
-      </div>
-      <div class="account-item">
-        <span class="bank-name"><img src="https://www.onemoney.in/docs/img/bank_icons/sbi_bank_icon.png" height="30px"><div>&nbsp;State Bank of India</div></span>
-        <span class="account-type">Salary</span>
-        <span class="account-balance">₹&nbsp;60,000</span>
+      <div *ngFor="let account of accounts | slice:0:4" class="account-item">
+    <span class="bank-name">
+      <img [src]="account.bankIconUrl" alt="{{ account.bankName }}" height="30px">
+      <div>&nbsp;{{ account.bankName }} - {{ account.accountNumber }}</div>
+    </span>
+        <span class="account-type">{{ account.accountType }}</span>
+        <span class="account-balance">₹&nbsp;{{ account.accountBalance }}</span>
       </div>
 <br>
       <div><a class="link-account-button" href="add-bankaccount"><i class="fa-solid fa-circle-plus"></i> Link a Bank Account</a></div>

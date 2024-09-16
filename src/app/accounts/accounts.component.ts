@@ -10,6 +10,7 @@ export class AccountsComponent {
 isData:boolean=false;
 
   accounts: any[] = []; // Holds account data
+  selectedAccount: any = null;
 
   constructor(private accountService: AccountService) { }
 
@@ -18,5 +19,7 @@ isData:boolean=false;
       this.accounts = data.accounts; // Assuming the JSON structure has a key 'accounts'
     });
   }
-
+  showDetails(account: any): void {
+    this.selectedAccount = account;
+  }
 }

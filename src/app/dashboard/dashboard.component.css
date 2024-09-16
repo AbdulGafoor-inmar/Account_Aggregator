@@ -131,7 +131,6 @@
 }
 .recent-transactions-details{
   width: 850px;
-  height: 300px; /* Increased height to accommodate the bank account section */
   background: white;
   color: #343c6a;
   border-radius: 30px;
@@ -140,6 +139,7 @@
   overflow: hidden;
   margin: 20px;
   padding:30px;
+  max-height: max-content;
 }
 .trans-details{
   padding: 20px;

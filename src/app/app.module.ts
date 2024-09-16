@@ -13,6 +13,7 @@ import { ActiveConsentComponent } from './consent/active-consent/active-consent.
 import { InactiveConsentComponent } from './consent/inactive-consent/inactive-consent.component';
 import { AddNewBankAccountComponent } from './add-new-bank-account/add-new-bank-account.component';
 import { TransactionsComponent } from './transactions/transactions.component';
+import {FormsModule} from "@angular/forms";
 
 
 const appRoutes: Routes = [
@@ -37,15 +38,16 @@ const appRoutes: Routes = [
     AddNewBankAccountComponent,
     TransactionsComponent
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: false } // <-- debugging purposes only
-    ),
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        AppRoutingModule,
+        RouterModule.forRoot(
+            appRoutes,
+            {enableTracing: false} // <-- debugging purposes only
+        ),
+        FormsModule,
+    ],
   providers: [
   ],
   bootstrap: [AppComponent]

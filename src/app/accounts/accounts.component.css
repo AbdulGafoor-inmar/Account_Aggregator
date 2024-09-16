@@ -198,15 +198,6 @@ th, td {
   border-radius: 5px;
   font-weight: bold;
 }
-
-.complete {
-  color: green;
-}
-
-.cancel {
-  color: red;
-}
-
 /* Highlight row */
 .highlight {
   background-color: #f9f9f9;
@@ -229,11 +220,13 @@ th, td {
   border-bottom: 1px solid #ddd;
   align-items: center;
   height: 70px;
-  cursor: pointer;
 }
 .account-item:hover{
   background: #f5f5fa;
   border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 550;
 }
 .account-item:active {
   box-shadow: 2px 2px 5px #6c5ce7;
@@ -270,6 +263,10 @@ th, td {
 
 .link-account-button:active {
   box-shadow: 2px 2px 5px #6c5ce7;
+}
+
+.link-button{
+  padding: 20px;
 }
 
 .total-balance{
@@ -326,4 +323,17 @@ th, td {
   margin: 20px;
   padding: 30px;
   max-height: max-content;
+}
+.selected-account {
+  background-color: #f0f8ff;
+  border: 1px solid #007bff;
+}
+
+.account-details {
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  width: 100%;
 }
