@@ -1,6 +1,7 @@
 <div class="container">
   <h2>Hello {{ username }}! Let’s take you through two quick steps to link your financial Accounts.</h2>
-  <p>Please select the financial institution to proceed with account discovery.</p>
+  <p class="glow" *ngIf="selectBankTab">Please select the financial institution to proceed with account discovery.</p>
+  <p *ngIf="linkAccountsTab">These are the bank accounts found with your linked mobile number</p>
 
   <div class="steps">
     <div class="step" [ngClass]="{'active': currentStep === 1}">
@@ -69,13 +70,14 @@
         <div style="padding-right: 30px; width: 200px; height: 60px">
           <div class="account-type">
             <i class="fas fa-check-circle"></i> <!-- Checkmark Icon -->
-            <span>{{ getRandomAccountType(accountTypes) }}</span>
+            <span>{{ institution.accountType }}</span>
           </div>
-          <div class="account-number">XXXXXXXX{{ generateRandomFourDigits() }}</div>
+          <div class="account-number">XXXXXXXX{{ institution.accountNumber }}</div>
         </div>
 
         <div class="link-button">
-          <button>Link</button>
+          <button *ngIf="!isLinked(institution)" (click)="linkAccount(institution)">Link</button>
+          <button *ngIf="isLinked(institution)">Linked</button>
         </div>
       </div>
 

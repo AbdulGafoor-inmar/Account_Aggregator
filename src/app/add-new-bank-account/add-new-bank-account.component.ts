@@ -16,8 +16,9 @@ export class AddNewBankAccountComponent implements OnInit {
   public selectedInstitutions: any[] = [];
   public linkAccountsTab: boolean = false;
   public selectBankTab: boolean = true;
+  linkedStatus: { [key: string]: boolean } = {};
   currentStep = 1;
-  public accountTypes:any[]=["Savings","Salary","Fixed Deposit","Recurring Deposit","NRI"];
+  public accountTypes:any[]=["Savings","Current","Salary","Fixed Deposit","Recurring Deposit","NRI"];
 
   constructor(private http: HttpClient) {}
 
@@ -31,6 +32,11 @@ export class AddNewBankAccountComponent implements OnInit {
       response => {
         this.banksList = response;
         this.filteredInstitutions = this.banksList.fipList; // Initialize filteredInstitutions with the full list
+        this.filteredInstitutions = this.banksList.fipList.map(institution => ({
+          ...institution, // Spread the original institution properties
+          accountType: this.getRandomAccountType(this.accountTypes), // Add random account type
+          accountNumber: this.generateRandomFourDigits() // Add random 4-digit account number
+        }));
       },
       error => {
         console.error('There was an error fetching the bank data!', error);
@@ -77,9 +83,11 @@ export class AddNewBankAccountComponent implements OnInit {
     this.selectedInstitutions = [];
   }
 
-  linkAccount(account: any): void {
-    console.log('Linking account:', account);
-    // Add logic to link the account
+  linkAccount(institution: any): void {
+    this.linkedStatus[institution.fipName] = true;
+  }
+  isLinked(institution: any): boolean {
+    return this.linkedStatus[institution.fipName] === true;
   }
   getRandomAccountType(accountTypes: string[]): string {
     const randomIndex = Math.floor(Math.random() * accountTypes.length);
