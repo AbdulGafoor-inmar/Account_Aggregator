@@ -14,6 +14,10 @@ export class AddNewBankAccountComponent implements OnInit {
   public searchTerm: string = '';
   public filteredInstitutions: any[] = [];
   public selectedInstitutions: any[] = [];
+  public linkAccountsTab: boolean = false;
+  public selectBankTab: boolean = true;
+  currentStep = 1;
+  public accountTypes:any[]=["Savings","Salary","Fixed Deposit","Recurring Deposit","NRI"];
 
   constructor(private http: HttpClient) {}
 
@@ -56,16 +60,32 @@ export class AddNewBankAccountComponent implements OnInit {
 
   continue(): void {
     if (this.selectedInstitutions.length > 0) {
-      console.log('Selected institutions:', this.selectedInstitutions);
-      // Example API call (adjust URL and method as needed):
-      // this.http.post('your-api-endpoint', { institutions: this.selectedInstitutions })
-      //   .subscribe(response => console.log(response));
+      if (this.currentStep < 2) {
+        this.currentStep++;
+        this.linkAccountsTab=true;
+        this.selectBankTab=false;
+      }
+      else{
+        this.currentStep--;
+      }
     } else {
-      alert('Please select at least one institution');
+      alert('No institutions selected. Please select at least one institution.');
     }
   }
 
   cancel(): void {
     this.selectedInstitutions = [];
+  }
+
+  linkAccount(account: any): void {
+    console.log('Linking account:', account);
+    // Add logic to link the account
+  }
+  getRandomAccountType(accountTypes: string[]): string {
+    const randomIndex = Math.floor(Math.random() * accountTypes.length);
+    return accountTypes[randomIndex];
+  }
+  generateRandomFourDigits(): string {
+    return Math.floor(1000 + Math.random() * 9000).toString();
   }
 }

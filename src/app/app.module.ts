@@ -14,11 +14,12 @@ import { InactiveConsentComponent } from './consent/inactive-consent/inactive-co
 import { AddNewBankAccountComponent } from './add-new-bank-account/add-new-bank-account.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import {FormsModule} from "@angular/forms";
+import { LinkAccountComponent } from './link-account/link-account.component';
 
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-  {path: 'homepage', pathMatch: 'full' ,component: DashboardComponent },
+  { path: 'homepage', pathMatch: 'full' ,component: DashboardComponent },
   { path: 'dashboard', pathMatch: 'full' , component: DashboardComponent },
   { path: 'consents', pathMatch: 'full' , component: ConsentComponent },
   { path: 'accounts', pathMatch: 'full' , component: AccountsComponent },
@@ -26,6 +27,7 @@ const appRoutes: Routes = [
   { path: 'inactive-consents', pathMatch: 'full' , component: InactiveConsentComponent },
   { path: 'add-bankaccount', pathMatch: 'full' , component: AddNewBankAccountComponent },
   { path: 'transactions', pathMatch: 'full' , component: TransactionsComponent },
+  { path: 'link-account', pathMatch: 'full' , component: LinkAccountComponent },
 ];
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ const appRoutes: Routes = [
     ActiveConsentComponent,
     InactiveConsentComponent,
     AddNewBankAccountComponent,
-    TransactionsComponent
+    TransactionsComponent,
+    LinkAccountComponent
   ],
     imports: [
         BrowserModule,
