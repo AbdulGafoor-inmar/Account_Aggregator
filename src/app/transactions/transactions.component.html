@@ -1,21 +1,35 @@
 <div class="container">
-  <!-- Payment Options -->
-  <div class="payment-options">
-    <img src="paypal.png" alt="PayPal">
-    <img src="mastercard.png" alt="MasterCard">
-    <img src="googlepay.png" alt="Google Pay">
-    <img src="amazonpay.png" alt="Amazon Pay">
-    <img src="bitcoin.png" alt="Bitcoin">
-    <img src="skrill.png" alt="Skrill">
+  <div class="bank-selection-section">
+    <label style="margin-right: 60px" class="bank-select" for="bank-select">Select Bank: </label>
+    <select id="bank-select" name="bank" [(ngModel)]="selectedBank" (change)="onSelectionChange()">
+      <option value="">Please Choose Bank</option>
+      <option *ngFor="let account of accounts" [value]="account.bankName">{{ account.bankName }}</option>
+    </select>
   </div>
+
+  <div class="bank-selection-section">
+    <label style="margin-right: 19px" for="bank-type-select">Select Bank Type: </label>
+    <select id="bank-type-select" name="bankType" [(ngModel)]="selectedBankType" (change)="onBankTypeChange()" [disabled]="isCreditCardSelected">
+      <option value="">Please Choose Type</option>
+      <option *ngFor="let type of accountTypes" [value]="type">{{ type }}</option>
+    </select>
+  </div>
+
+  <div class="bank-selection-section">
+    <label style="margin-right: 13px" for="credit-card-select">Select Credit Card: </label>
+    <select id="credit-card-select" name="creditCard" [(ngModel)]="selectedCreditCard" (change)="onCreditCardChange()" [disabled]="isBankTypeSelected">
+      <option value="">Please Choose Credit Card</option>
+      <option *ngFor="let creditCard of creditCardOptions" [value]="creditCard">{{ creditCard }}</option>
+    </select>
+  </div>
+
+
 
   <!-- Tabbed Section -->
   <div class="tab-container">
-    <button class="tab active">All</button>
-    <button class="tab">Complete</button>
-    <button class="tab">Pending</button>
-    <button class="tab">Deposit</button>
-    <button class="tab">Outgoing</button>
+    <button class="tab" [class.active]="activeTab === 'All'" (click)="filterTransactions('All')">All</button>
+    <button class="tab" [class.active]="activeTab === 'Deposit'" (click)="filterTransactions('Deposit')">Deposits</button>
+    <button class="tab" [class.active]="activeTab === 'Withdrawal'" (click)="filterTransactions('Withdrawal')">Withdrawals</button>
   </div>
 
   <!-- Transaction Table -->
@@ -32,39 +46,14 @@
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <td>20 Dec 21</td>
-        <td>12:20 AM</td>
-        <td>Jav1245784542132</td>
-        <td>Horew Doree</td>
-        <td>$823</td>
-        <td><span class="status complete">Complete</span></td>
+      <tr *ngFor="let transaction of filteredTransactions">
+        <td>{{ transaction.date }}</td>
+        <td>{{ transaction.time }}</td>
+        <td>{{ transaction.transactionId }}</td>
+        <td>{{ transaction.name }}</td>
+        <td>₹{{ transaction.amount }}</td>
+        <td><span [ngClass]="{'status complete': transaction.status === 'Deposit', 'status cancel': transaction.status === 'Withdrawal'}">{{ transaction.status }}</span></td>
       </tr>
-      <tr>
-        <td>18 Dec 21</td>
-        <td>11:58 PM</td>
-        <td>Jav124574124012</td>
-        <td>Karee Palu</td>
-        <td>$1023</td>
-        <td><span class="status complete">Complete</span></td>
-      </tr>
-      <tr class="highlight">
-        <td>18 Dec 21</td>
-        <td>10:56 PM</td>
-        <td>Jav145124545454</td>
-        <td>Team6</td>
-        <td>$2125</td>
-        <td><span class="status complete">Complete</span></td>
-      </tr>
-      <tr>
-        <td>18 Dec 21</td>
-        <td>10:21 PM</td>
-        <td>Jav124575415461</td>
-        <td>Matheu pre</td>
-        <td>$500</td>
-        <td><span class="status cancel">Cancel</span></td>
-      </tr>
-      <!-- Continue rows as needed -->
       </tbody>
     </table>
   </div>

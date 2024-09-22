@@ -6,114 +6,34 @@
 }
 
 body {
-  background-color: #f5f5f5;
-  padding: 20px;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-}
-
-.transaction-summary {
-  display: flex;
-}
-
-.summary-item {
-  margin-right: 30px;
-  text-align: center;
-}
-
-.summary-item h2 {
-  color: #333;
-  font-size: 24px;
-}
-
-.summary-item p {
-  color: #777;
-  font-size: 16px;
-}
-
-.add-btn {
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.table-container {
-  overflow-x: auto;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-thead {
-  background-color: #f1f1f1;
-}
-
-th, td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-th {
-  color: #555;
-}
-
-.status {
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-weight: bold;
-}
-
-.successful {
-  color: green;
-}
-
-.failed {
-  color: red;
-}
-
-.pending {
-  color: orange;
-}
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-}
-
-body {
   background-color: #f9f9f9;
   padding: 20px;
 }
 
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 960px;
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  max-height: 800px;
+  margin: 30px auto;
+}
+
+.bank-selection-section {
+  margin: 10px 0;
+}
+label {
+  font-weight: bold;
+}
+
+select {
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid;
+  width: 23%;
 }
 
 /* Payment options */
@@ -133,6 +53,7 @@ body {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+  margin-top: 30px;
 }
 
 .tab {
@@ -145,12 +66,13 @@ body {
 }
 
 .tab.active {
-  background-color: #333;
-  color: white;
+  background: linear-gradient(to right top, rgb(76, 73, 237) 30%, rgb(10, 6, 244));
+  color: #ffffff;
 }
 
 .table-container {
   overflow-x: auto;
+  border-radius: 5px;
 }
 
 /* Table styling */
@@ -160,7 +82,8 @@ table {
 }
 
 thead {
-  background-color: #f1f1f1;
+  background: linear-gradient(to right top, rgb(76, 73, 237) 30%, rgb(10, 6, 244));
+  color: #ffffff;
 }
 
 th, td {
@@ -168,19 +91,14 @@ th, td {
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
-
-.status {
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-weight: bold;
-}
-
 .complete {
   color: green;
+  font-weight: bold;
 }
 
 .cancel {
   color: red;
+  font-weight: bold;
 }
 
 /* Highlight row */

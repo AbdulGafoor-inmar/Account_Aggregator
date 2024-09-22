@@ -7,11 +7,15 @@ import { Observable } from 'rxjs';
 })
 export class AccountService {
 
-  private jsonUrl = 'JsonData/AccountDetails.json'; // Path to the JSON file
+  private AccountDetailsJsonUrl = 'JsonData/AccountDetails.json';
+  private TransactionsJsonUrl = 'JsonData/TransactionsDetails.json';
 
   constructor(private http: HttpClient) { }
 
   getAccounts(): Observable<any> {
-    return this.http.get(this.jsonUrl); // Make the HTTP GET request
+    return this.http.get(this.AccountDetailsJsonUrl); // Make the HTTP GET request
+  }
+  getTransactions(): Observable<any> {
+    return this.http.get(this.TransactionsJsonUrl); // Make the HTTP GET request
   }
 }

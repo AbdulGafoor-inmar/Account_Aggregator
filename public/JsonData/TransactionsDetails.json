@@ -1,0 +1,34 @@
+﻿[
+  {
+    "date": "20 Dec 21",
+    "time": "12:20 AM",
+    "transactionId": "Jav1245784542132",
+    "name": "Horew Doree",
+    "amount": 823,
+    "status": "Deposit"
+  },
+  {
+    "date": "18 Dec 21",
+    "time": "11:58 PM",
+    "transactionId": "Jav124574124012",
+    "name": "Karee Palu",
+    "amount": 1023,
+    "status": "Deposit"
+  },
+  {
+    "date": "18 Dec 21",
+    "time": "10:56 PM",
+    "transactionId": "Jav145124545454",
+    "name": "Team6",
+    "amount": 2125,
+    "status": "Deposit"
+  },
+  {
+    "date": "18 Dec 21",
+    "time": "10:21 PM",
+    "transactionId": "Jav124575415461",
+    "name": "Matheu Pre",
+    "amount": 500,
+    "status": "Withdrawal"
+  }
+]

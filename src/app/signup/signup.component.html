@@ -1,0 +1,41 @@
+<div class="signup-container">
+  <div class="signup-form">
+    <h2>Sign Up</h2>
+    <p>Already have an account? <a href="/login">Sign In Now!</a></p>
+
+    <div class="social-signup">
+      <button class="social-btn google">
+        <i class="fab fa-google"></i>
+      </button>
+      <button class="social-btn facebook">
+        <i class="fab fa-facebook"></i>
+      </button>
+      <button class="social-btn twitter">
+        <i class="fab fa-twitter"></i>
+      </button>
+    </div>
+
+    <div class="or">OR</div>
+
+    <form (ngSubmit)="onSubmit()" #signupForm="ngForm">
+      <div class="input-group">
+        <label for="email">Email address</label>
+        <input type="email" id="email" name="email" ngModel required>
+      </div>
+
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" ngModel required>
+        <i class="toggle-password" (click)="togglePasswordVisibility()"></i>
+      </div>
+
+      <div class="input-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" ngModel required>
+        <i class="toggle-password" (click)="togglePasswordVisibility()"></i>
+      </div>
+
+      <button type="submit" [disabled]="!signupForm.valid" class="submit-btn">Sign Up</button>
+    </form>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 <!-- Navbar at the top -->
-<div class="navbar">
+<div class="navbar" *ngIf="showNavbar">
   <h2 class="logo">My Money</h2>
   <div class="header__user--image">
     <div class="search-bar nav-settings nav-icon">
@@ -22,19 +22,19 @@
 </div>
 
 <!-- Main container to hold the sidebar and content -->
-<div class="main-container">
+<div class="main-container" *ngIf="showNavbar">
   <!-- Sidebar navigation -->
   <div class="sidebar">
-    <a class="nav-buttons" href="dashboard" onclick="OnDashboardClick()"><i class="fa-solid fa-house"></i>Dashboard</a>
-    <a class="nav-buttons" href="transactions" onclick="OnTransactionsClick()"><i class="fa-solid fa-money-bill-transfer"></i>Transactions</a>
-    <a class="nav-buttons" href="accounts" onclick="OnAccountsClick()"><i class="fa-solid fa-user"></i>Accounts</a>
-    <a class="nav-buttons" href="consents" onclick="OnConsentsClick()"><i class="fa-solid fa-file-invoice"></i>Consents</a>
-    <a class="nav-buttons" href="investments"><i class="fa-solid fa-money-bill-trend-up"></i>Investments</a>
-    <a class="nav-buttons" href="credit-cards"><i class="fa-solid fa-credit-card"></i>Credit - Cards</a>
-    <a class="nav-buttons" href="loans"><i class="fa-solid fa-hand-holding-dollar"></i>Loans</a>
-    <a class="nav-buttons" href="services"><i class="fa-solid fa-screwdriver-wrench"></i>Services</a>
-    <a class="nav-buttons" href="settings"><i class="fa-solid fa-gear"></i>Settings</a>
-    <a class="nav-buttons" href="logout"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+    <a class="nav-buttons" [class.active]="activeTab === 'dashboard'"  (click)="OnDashboardClick()"><i class="fa-solid fa-house"></i>Dashboard</a>
+    <a class="nav-buttons" [class.active]="activeTab === 'transactions'"  (click)="OnTransactionsClick()"><i class="fa-solid fa-money-bill-transfer"></i>Transactions</a>
+    <a class="nav-buttons" [class.active]="activeTab === 'accounts'"  (click)="OnAccountsClick()"><i class="fa-solid fa-user"></i>Accounts</a>
+    <a class="nav-buttons" [class.active]="activeTab === 'consents'" (click)="OnConsentsClick()"><i class="fa-solid fa-file-invoice"></i>Consents</a>
+    <a class="nav-buttons" [class.active]="activeTab === 'investments'"><i class="fa-solid fa-money-bill-trend-up"></i>Investments</a>
+    <a class="nav-buttons" [class.active]="activeTab === 'credit'" ><i class="fa-solid fa-credit-card"></i>Credit - Cards</a>
+    <a class="nav-buttons" [class.active]="activeTab === 'loans'" ><i class="fa-solid fa-hand-holding-dollar"></i>Loans</a>
+    <a class="nav-buttons" [class.active]="activeTab === 'services'" ><i class="fa-solid fa-screwdriver-wrench"></i>Services</a>
+    <a class="nav-buttons" [class.active]="activeTab === 'settings'"><i class="fa-solid fa-gear"></i>Settings</a>
+    <a class="nav-buttons" [class.active]="activeTab === 'logout'" (click)="OnLogoutClick()" ><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
   </div>
 </div>
 <body>
