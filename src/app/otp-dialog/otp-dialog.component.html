@@ -1,0 +1,20 @@
+<!-- OTP Modal -->
+<div *ngIf="showModal" class="modal">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <h3>Please Enter OTP</h3>
+    <p>Your One Time Password (OTP) has been sent via SMS to your registered mobile number.</p>
+
+    <div class="otp-input">
+      <input #otpInput type="text" maxlength="1" [(ngModel)]="otp[0]" (input)="focusNext($event, 0)" />
+      <input #otpInput type="text" maxlength="1" [(ngModel)]="otp[1]" (input)="focusNext($event, 1)" />
+      <input #otpInput type="text" maxlength="1" [(ngModel)]="otp[2]" (input)="focusNext($event, 2)" />
+      <input #otpInput type="text" maxlength="1" [(ngModel)]="otp[3]" (input)="focusNext($event, 3)" />
+      <input #otpInput type="text" maxlength="1" [(ngModel)]="otp[4]" (input)="focusNext($event, 4)" />
+      <input #otpInput type="text" maxlength="1" [(ngModel)]="otp[5]" (input)="focusNext($event, 5)" />
+    </div>
+
+    <p><a href="#" id="resend" (click)="resendOtp()">Did not receive OTP? Resend</a></p>
+    <button (click)="verifyOtp()">Verify</button>
+  </div>
+</div>

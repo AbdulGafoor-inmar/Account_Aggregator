@@ -11,66 +11,123 @@ export class TransactionsComponent implements OnInit {
   filteredTransactions: any[] = [];
   activeTab: string = 'All';
   accounts: any[] = [];
-  public accountTypes: any[] = ["Savings", "Current", "Salary", "Fixed Deposit", "Recurring Deposit", "NRI"];
-  public creditCardOptions: any[] = ["Regular","Premium","Super Premium","Co-branded","Commercial or Business","CashBack","Secured","Fuel","Shopping","Travel"];
+  selectedAccounts: any[] = []; // Track selected accounts
 
-  public selectedBank: string = '';
-  public selectedBankType: string = '';
-  public selectedCreditCard: string = '';
+  // List of possible transaction descriptions
+  transactionDescriptions: string[] = [
+    "ATM Withdrawal",
+    "Online Shopping",
+    "Salary Credit",
+    "Bill Payment",
+    "Transfer to Savings",
+    "Fuel Purchase",
+    "Grocery Shopping",
+    "EMI Payment",
+    "Loan Disbursement",
+    "Dining Out",
+    "Utility Bill Payment",
+    "Rent Payment",
+    "Credit Card Payment",
+    "Cash Deposit",
+    "Investment Purchase",
+    "Refund"
+  ];
 
-  public isCreditCardSelected: boolean = false;
-  public isBankTypeSelected: boolean = false;
+  isAddingTransaction = false; // Controls whether the add transaction row is visible
+  newTransaction = { date: '', time: '', name: '', description: '', amount: 0, color: '' };
+
 
   constructor(private accountService: AccountService) { }
 
   ngOnInit(): void {
+    // Get all accounts and generate transactions for each account
     this.accountService.getAccounts().subscribe(data => {
       this.accounts = data.accounts;
+
+      // Initially generate transactions for all accounts
+      this.accounts.forEach(account => {
+        const accountTransactions = this.generateTransactions(100, account);
+        this.transactions = [...this.transactions, ...accountTransactions]; // Merge transactions
+      });
+
+      // Initially filter to show 'All' transactions
+      this.filterTransactions('All');
     });
-
-    this.filterTransactions('All');
+  }
+  addNewTransaction() {
+    this.isAddingTransaction = true;
+    this.newTransaction = { date: '', time: '', name: '', description: '', amount: 0, color: '' }; // Reset form
   }
 
-  onSelectionChange(): void {
-    if (this.selectedBank && this.selectedBankType) {
-      this.transactions = this.generateTransactions(1000);
-      this.filterTransactions(this.activeTab);  // Update the filtered transactions
-    }
+  // Save the new transaction
+  saveNewTransaction() {
+    const transaction = {
+      date: this.newTransaction.date,
+      time: this.newTransaction.time,
+      name: this.newTransaction.name,
+      description: this.newTransaction.description,
+      amount: this.newTransaction.amount,
+      color: this.newTransaction.amount >= 0 ? 'green' : 'red', // Green for positive, red for negative
+      isEditing: false
+    };
+
+    // Add the new transaction to the list
+    this.transactions.push(transaction);
+
+    // Reset the form and hide the add transaction row
+    this.isAddingTransaction = false;
+    this.newTransaction = { date: '', time: '', name: '', description: '', amount: 0, color: '' };
+
+    // Update the filtered transactions list
+    this.filterTransactions(this.activeTab);
   }
 
-  onBankTypeChange(): void {
-    if (this.selectedBankType) {
-      this.isBankTypeSelected = true;
-      this.isCreditCardSelected = false;
-      if (this.selectedBank && this.selectedBankType) {
-        this.transactions = this.generateTransactions(1000);
-        this.filterTransactions(this.activeTab);
-      }
+  // Cancel adding the new transaction
+  cancelNewTransaction() {
+    this.isAddingTransaction = false; // Hide the add transaction row
+  }
+
+  onSelectionChange(account: any): void {
+    // Reset the transactions to only show transactions for selected accounts
+    this.transactions = [];
+
+    // If the account is already selected, remove it from the selectedAccounts
+    if (this.selectedAccounts.includes(account)) {
+      this.selectedAccounts = this.selectedAccounts.filter(acc => acc !== account);
     } else {
-      this.isBankTypeSelected = false;
+      this.selectedAccounts.push(account); // Add selected account to the list
     }
-  }
 
-  onCreditCardChange(): void {
-    if (this.selectedCreditCard) {
-      this.isCreditCardSelected = true;
-      this.isBankTypeSelected = false;
-      if (this.selectedBank && this.selectedCreditCard) {
-        this.transactions = this.generateTransactions(1000);
-        this.filterTransactions(this.activeTab);
-      }
+    // If no account is selected, show transactions for all accounts
+    if (this.selectedAccounts.length === 0) {
+      this.accounts.forEach(acc => {
+        const accountTransactions = this.generateTransactions(100, acc);
+        this.transactions = [...this.transactions, ...accountTransactions]; // Merge transactions
+      });
     } else {
-      this.isCreditCardSelected = false;
+      // Generate transactions only for selected accounts
+      this.selectedAccounts.forEach(acc => {
+        const accountTransactions = this.generateTransactions(100, acc);
+        this.transactions = [...this.transactions, ...accountTransactions]; // Merge transactions
+      });
     }
+
+    this.filterTransactions(this.activeTab);  // Update the filtered transactions
   }
 
   filterTransactions(type: string): void {
     this.activeTab = type;
+
     if (type === 'All') {
       this.filteredTransactions = this.transactions;
+    } else if (type === 'Credit') {
+      this.filteredTransactions = this.transactions.filter(transaction => transaction.color === 'green');
+    } else if (type === 'Debit') {
+      this.filteredTransactions = this.transactions.filter(transaction => transaction.color === 'red');
     } else {
-      this.filteredTransactions = this.transactions.filter(transaction => transaction.status === type);
+      this.filteredTransactions = this.transactions;
     }
+
     this.filteredTransactions.sort((a, b) => this.compareDates(b.date, a.date));
   }
 
@@ -80,57 +137,27 @@ export class TransactionsComponent implements OnInit {
     return d1.getTime() - d2.getTime(); // Ascending order, switch to d2 - d1 for descending
   }
 
-  // Generate 100 random transactions
-  generateTransactions(count: number): any[] {
+  // Generate random transactions for an account
+  generateTransactions(count: number, account: any): any[] {
     const transactions = [];
     for (let i = 0; i < count; i++) {
       transactions.push({
         date: this.getRandomDate(),
         time: this.getRandomTime(),
-        transactionId: this.getRandomTransactionId(),
-        name: this.getRandomName(),
+        name: this.getRandomName(account),
+        description: this.getRandomDescription(), // Assign a random description
         amount: this.getRandomAmount(),
-        status: this.getRandomStatus()
+        color: this.getRandomColor(),  // Assign random green or red color
+        isEditing: false // Property to track edit mode
       });
     }
     return transactions;
   }
 
-  // Generate random transaction ID based on selected bank and type
-  getRandomTransactionId() {
-    const bankPrefix = this.selectedBank ? this.selectedBank.slice(0, 3).toUpperCase() : 'UNK'; // Use "UNK" if no bank is selected
-    let typePrefix = null;
-    if(this.isBankTypeSelected) {
-      typePrefix = this.selectedBankType ? this.selectedBankType.slice(0, 3).toUpperCase() : 'UNK'; // Use "UNK" if no bank type is selected
-    }
-    else if(this.isCreditCardSelected){
-      typePrefix = this.selectedCreditCard ? this.selectedCreditCard.slice(0, 3).toUpperCase() : 'UNK'; // Use "UNK" if no bank type is selected
-    }
-    const randomNumber = Math.floor(Math.random() * 1000000000000).toString();
-    const transactionId = bankPrefix + randomNumber + typePrefix;
-
-    return transactionId;
+  // Generate random name based on bank and account type
+  getRandomName(account: any) {
+    return `${account.bankName}-${account.accountType}`;
   }
-
-  // Generate random name
-  getRandomName() {
-    const names = [
-      'John Doe', 'Jane Smith', 'Horew Doree', 'Karee Palu', 'Team6', 'Matheu Pre',
-      'Alice Cooper', 'Bob Marley', 'Emily Brown', 'Michael Johnson', 'Sarah Williams',
-      'Chris Evans', 'Natalie Porter', 'Daniel Craig', 'Sophia Loren', 'James Bond',
-      'Olivia Harris', 'Liam Scott', 'Ava Green', 'Ethan Turner', 'Isabella White',
-      'Noah Adams', 'Mia Lewis', 'Lucas Wright', 'Amelia Lee', 'Mason Clark',
-      'Harper King', 'Elijah Hall', 'Charlotte Young', 'Benjamin Torres',
-      'Emma Turner', 'Alexander Baker', 'Oliver Perez', 'David Mitchell', 'Jacob Thompson',
-      'Jackson Parker', 'Sophie Robinson', 'Grace Edwards', 'Leo Martinez', 'Abigail Moore',
-      'Ella Walker', 'Henry Allen', 'Scarlett Stewart', 'Milo Foster', 'Hannah Brooks',
-      'Zoe Cox', 'Owen Bailey', 'Aiden Sanders', 'Eva Nelson', 'Evelyn Howard',
-      'Gabriel Campbell', 'Ruby Davis', 'Nathaniel Cook', 'Samuel Morris'
-    ];
-
-    return names[Math.floor(Math.random() * names.length)];
-  }
-
 
   // Generate random amount
   getRandomAmount() {
@@ -156,9 +183,30 @@ export class TransactionsComponent implements OnInit {
     return `${hour}:${minute} ${ampm}`;
   }
 
-  // Generate random status
-  getRandomStatus() {
-    const statuses = ['Deposit', 'Withdrawal'];
-    return statuses[Math.floor(Math.random() * statuses.length)];
+  // Generate random color (Green or Red) for the amount
+  getRandomColor() {
+    return Math.random() > 0.5 ? 'green' : 'red';
+  }
+
+  // Generate random transaction description
+  getRandomDescription() {
+    const randomIndex = Math.floor(Math.random() * this.transactionDescriptions.length);
+    return this.transactionDescriptions[randomIndex];
+  }
+
+  // Enable edit mode for a transaction
+  editTransaction(transaction: any): void {
+    transaction.isEditing = true;
+  }
+
+  // Save the edited transaction
+  saveTransaction(transaction: any): void {
+    transaction.isEditing = false; // Exit edit mode
+    // Add logic to save the transaction if required (e.g., API call)
+  }
+
+  // Cancel the edit
+  cancelEdit(transaction: any): void {
+    transaction.isEditing = false; // Exit edit mode without saving
   }
 }

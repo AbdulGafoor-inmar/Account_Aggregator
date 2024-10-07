@@ -24,7 +24,7 @@
     {
       "bankName": "Axis Bank",
       "accountNumber": "9876",
-      "accountType": "Current",
+      "accountType": "Credit Card",
       "accountBalance": "45000",
       "bankIconUrl": "https://www.onemoney.in/docs/img/bank_icons/axisbank_icon.png"
     },
@@ -45,7 +45,7 @@
     {
       "bankName": "Punjab National Bank",
       "accountNumber": "4321",
-      "accountType": "Current",
+      "accountType": "Credit Card",
       "accountBalance": "22000",
       "bankIconUrl": "https://www.onemoney.in/docs/img/bank_icons/panjab_bank_icon.png"
     }

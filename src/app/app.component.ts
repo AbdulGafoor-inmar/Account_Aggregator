@@ -10,6 +10,7 @@ export class AppComponent implements OnInit {
   title = 'acc-agg-web';
   activeTab: string = 'dashboard'; // Set a default active tab
   showNavbar = true;
+  isChatbotOpen = false;
   constructor(private router: Router) {
     // Listen to route changes to dynamically show/hide the navbar
     this.router.events.subscribe((event) => {
@@ -30,6 +31,10 @@ export class AppComponent implements OnInit {
     });
   }
 
+  // Toggle the chatbot's visibility
+  toggleChatbot() {
+    this.isChatbotOpen = !this.isChatbotOpen;
+  }
   OnDashboardClick(): void {
     this.setActiveTab('dashboard');
     this.router.navigate(['/dashboard']);

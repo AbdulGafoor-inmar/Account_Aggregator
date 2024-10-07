@@ -2,7 +2,6 @@
   {
     "date": "20 Dec 21",
     "time": "12:20 AM",
-    "transactionId": "Jav1245784542132",
     "name": "Horew Doree",
     "amount": 823,
     "status": "Deposit"
@@ -10,7 +9,6 @@
   {
     "date": "18 Dec 21",
     "time": "11:58 PM",
-    "transactionId": "Jav124574124012",
     "name": "Karee Palu",
     "amount": 1023,
     "status": "Deposit"
@@ -18,7 +16,6 @@
   {
     "date": "18 Dec 21",
     "time": "10:56 PM",
-    "transactionId": "Jav145124545454",
     "name": "Team6",
     "amount": 2125,
     "status": "Deposit"
@@ -26,9 +23,50 @@
   {
     "date": "18 Dec 21",
     "time": "10:21 PM",
-    "transactionId": "Jav124575415461",
     "name": "Matheu Pre",
-    "amount": 500,
+    "amount": 8300,
+    "status": "Withdrawal"
+  },
+  {
+    "date": "18 Dec 21",
+    "time": "10:21 PM",
+    "name": "Tom",
+    "amount": 8000,
+    "status": "Withdrawal"
+  },
+  {
+    "date": "18 Dec 21",
+    "time": "10:21 PM",
+    "name": "Joseph",
+    "amount": 57300,
+    "status": "Deposit"
+  },
+  {
+    "date": "18 Dec 21",
+    "time": "10:21 PM",
+    "name": "Salary Credit",
+    "amount": 50000,
+    "status": "Deposit"
+  },
+  {
+    "date": "18 Dec 21",
+    "time": "10:21 PM",
+    "name": "ATM Withdrawal",
+    "amount": 9500,
+    "status": "Withdrawal"
+  },
+  {
+    "date": "18 Dec 21",
+    "time": "10:21 PM",
+    "name": "Groceries",
+    "amount": 1500,
+    "status": "Withdrawal"
+  },
+  {
+    "date": "18 Dec 21",
+    "time": "10:21 PM",
+    "name": "Service Chanrge",
+    "amount": 300,
     "status": "Withdrawal"
   }
 ]

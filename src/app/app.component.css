@@ -175,3 +175,47 @@ body {
   color: blue;
   font-weight: bold;
 }
+.chatbot-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.profile__image {
+  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.profile__image:hover {
+  transform: scale(1.1); /* Slight zoom on hover */
+}
+
+.chat-window {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.close-chat {
+  align-self: flex-end;
+  margin: 5px;
+  padding: 5px 10px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.close-chat:hover {
+  background-color: #ff1a1a;
+}
+
+.chatbot-container .chat-window app-chatbot {
+  flex-grow: 1; /* Let the chatbot take the rest of the space */
+}

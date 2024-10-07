@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login-page',
@@ -10,9 +11,8 @@ export class LoginPageComponent {
   email: string = '';
   password: string = '';
 
+  constructor(public router: Router) {  }
   onSubmit() {
-    console.log('Email:', this.email);
-    console.log('Password:', this.password);
-    // Add your login logic here
+    this.router.navigate(['/dashboard'])
   }
 }

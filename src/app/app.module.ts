@@ -16,6 +16,8 @@ import { TransactionsComponent } from './transactions/transactions.component';
 import {FormsModule} from "@angular/forms";
 import { SignupComponent } from './signup/signup.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { OtpDialogComponent } from './otp-dialog/otp-dialog.component';
+import { ChatbotComponent } from './chatbot/chatbot.component';
 
 
 const appRoutes: Routes = [
@@ -43,7 +45,9 @@ const appRoutes: Routes = [
     AddNewBankAccountComponent,
     TransactionsComponent,
     SignupComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    OtpDialogComponent,
+    ChatbotComponent
   ],
     imports: [
         BrowserModule,

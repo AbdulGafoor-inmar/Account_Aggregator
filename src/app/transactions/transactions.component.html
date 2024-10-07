@@ -1,60 +1,84 @@
 <div class="container">
-  <div class="bank-selection-section">
-    <label style="margin-right: 60px" class="bank-select" for="bank-select">Select Bank: </label>
-    <select id="bank-select" name="bank" [(ngModel)]="selectedBank" (change)="onSelectionChange()">
-      <option value="">Please Choose Bank</option>
-      <option *ngFor="let account of accounts" [value]="account.bankName">{{ account.bankName }}</option>
-    </select>
+
+  <button class="add-transaction-button" (click)="addNewTransaction()">+ Add Transaction</button>
+
+  <!-- Accounts Section -->
+  <div class="accounts-container">
+    <h3 style="padding-bottom: 30px; padding-top: 40px;">Accounts</h3>
+    <ul>
+      <li *ngFor="let account of accounts" class="account-item">
+        <div style="display: flex; align-items: center">
+        <input type="checkbox" [(ngModel)]="account.selected" (change)="onSelectionChange(account)" class="custom-checkbox"> <!-- Custom Checkbox -->
+        <strong style="max-width: fit-content;">{{ account.bankName }}</strong>
+        </div>
+        <div>{{ account.accountType }} - {{ account.accountNumber }}</div>
+      </li>
+    </ul>
   </div>
+  <div>
+    <!-- Tabbed Section -->
+    <div class="tab-container" style="padding-top: 40px">
+      <button class="tab" [class.active]="activeTab === 'All'" (click)="filterTransactions('All')">All</button>
+      <button class="tab" [class.active]="activeTab === 'Credit'" (click)="filterTransactions('Credit')">Credit</button>
+      <button class="tab" [class.active]="activeTab === 'Debit'" (click)="filterTransactions('Debit')">Debit</button>
+    </div>
 
-  <div class="bank-selection-section">
-    <label style="margin-right: 19px" for="bank-type-select">Select Bank Type: </label>
-    <select id="bank-type-select" name="bankType" [(ngModel)]="selectedBankType" (change)="onBankTypeChange()" [disabled]="isCreditCardSelected">
-      <option value="">Please Choose Type</option>
-      <option *ngFor="let type of accountTypes" [value]="type">{{ type }}</option>
-    </select>
-  </div>
+    <!-- Transaction Table -->
+    <div class="table-container">
+      <table>
+        <thead>
+        <tr>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Bank</th>
+          <th>Description</th>
+          <th>Amount</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngIf="isAddingTransaction"> <!-- New Row for Adding Transaction -->
+          <td><input type="date" [(ngModel)]="newTransaction.date"></td>
+          <td><input type="time" [(ngModel)]="newTransaction.time"></td>
+          <td><input type="text" [(ngModel)]="newTransaction.name" placeholder="Bank-Account Type"></td>
+          <td><input type="text" [(ngModel)]="newTransaction.description"></td>
+          <td><input type="number" [(ngModel)]="newTransaction.amount"></td>
+          <td>
+            <button class="buttonStyle" (click)="saveNewTransaction()">Save</button>
+            <button class="buttonStyle" (click)="cancelNewTransaction()">Cancel</button>
+          </td>
+        </tr>
 
-  <div class="bank-selection-section">
-    <label style="margin-right: 13px" for="credit-card-select">Select Credit Card: </label>
-    <select id="credit-card-select" name="creditCard" [(ngModel)]="selectedCreditCard" (change)="onCreditCardChange()" [disabled]="isBankTypeSelected">
-      <option value="">Please Choose Credit Card</option>
-      <option *ngFor="let creditCard of creditCardOptions" [value]="creditCard">{{ creditCard }}</option>
-    </select>
-  </div>
+        <tr *ngFor="let transaction of filteredTransactions">
+          <td *ngIf="!transaction.isEditing">{{ transaction.date }}</td>
+          <td *ngIf="!transaction.isEditing">{{ transaction.time }}</td>
+          <td *ngIf="!transaction.isEditing">{{ transaction.name }}</td>
+          <td *ngIf="!transaction.isEditing">{{ transaction.description }}</td>
+          <td *ngIf="!transaction.isEditing" [ngStyle]="{color: transaction.color}" style="font-weight: bold">
+            ₹{{ transaction.amount }}
+          </td>
 
+          <!-- Editable fields when in edit mode -->
+          <td *ngIf="transaction.isEditing"><input [(ngModel)]="transaction.date"/></td>
+          <td *ngIf="transaction.isEditing"><input [(ngModel)]="transaction.time"/></td>
+          <td *ngIf="transaction.isEditing"><input [(ngModel)]="transaction.name"/></td>
+          <td *ngIf="transaction.isEditing"><input [(ngModel)]="transaction.description"/></td>
+          <td *ngIf="transaction.isEditing"><input [(ngModel)]="transaction.amount" type="number"/></td>
 
+          <!-- Action buttons -->
+          <td>
+            <!-- Edit button if not editing -->
+            <button class="buttonStyle" *ngIf="!transaction.isEditing" (click)="editTransaction(transaction)">Edit
+            </button>
 
-  <!-- Tabbed Section -->
-  <div class="tab-container">
-    <button class="tab" [class.active]="activeTab === 'All'" (click)="filterTransactions('All')">All</button>
-    <button class="tab" [class.active]="activeTab === 'Deposit'" (click)="filterTransactions('Deposit')">Deposits</button>
-    <button class="tab" [class.active]="activeTab === 'Withdrawal'" (click)="filterTransactions('Withdrawal')">Withdrawals</button>
-  </div>
-
-  <!-- Transaction Table -->
-  <div class="table-container">
-    <table>
-      <thead>
-      <tr>
-        <th>Date</th>
-        <th>Time</th>
-        <th>Transaction ID</th>
-        <th>Name</th>
-        <th>Amount</th>
-        <th>Status</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let transaction of filteredTransactions">
-        <td>{{ transaction.date }}</td>
-        <td>{{ transaction.time }}</td>
-        <td>{{ transaction.transactionId }}</td>
-        <td>{{ transaction.name }}</td>
-        <td>₹{{ transaction.amount }}</td>
-        <td><span [ngClass]="{'status complete': transaction.status === 'Deposit', 'status cancel': transaction.status === 'Withdrawal'}">{{ transaction.status }}</span></td>
-      </tr>
-      </tbody>
-    </table>
+            <!-- Save/Cancel buttons when editing -->
+            <button class="buttonStyle" *ngIf="transaction.isEditing" (click)="saveTransaction(transaction)">Save
+            </button>
+            <button class="buttonStyle" *ngIf="transaction.isEditing" (click)="cancelEdit(transaction)">Cancel</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

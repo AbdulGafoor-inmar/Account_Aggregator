@@ -30,7 +30,6 @@
     <a class="nav-buttons" [class.active]="activeTab === 'accounts'"  (click)="OnAccountsClick()"><i class="fa-solid fa-user"></i>Accounts</a>
     <a class="nav-buttons" [class.active]="activeTab === 'consents'" (click)="OnConsentsClick()"><i class="fa-solid fa-file-invoice"></i>Consents</a>
     <a class="nav-buttons" [class.active]="activeTab === 'investments'"><i class="fa-solid fa-money-bill-trend-up"></i>Investments</a>
-    <a class="nav-buttons" [class.active]="activeTab === 'credit'" ><i class="fa-solid fa-credit-card"></i>Credit - Cards</a>
     <a class="nav-buttons" [class.active]="activeTab === 'loans'" ><i class="fa-solid fa-hand-holding-dollar"></i>Loans</a>
     <a class="nav-buttons" [class.active]="activeTab === 'services'" ><i class="fa-solid fa-screwdriver-wrench"></i>Services</a>
     <a class="nav-buttons" [class.active]="activeTab === 'settings'"><i class="fa-solid fa-gear"></i>Settings</a>
@@ -47,4 +46,17 @@
       </article>
     </section>
   </div>
+
+  <!-- Chatbot Section (Always at the bottom-right corner) -->
+  <div class="chatbot-container">
+    <!-- The image that toggles the chatbot visibility -->
+    <img *ngIf="!isChatbotOpen" src="assets/images/robot.png" height="50" alt="Chatbot Icon" class="profile__image" (click)="toggleChatbot()">
+
+    <!-- Chatbot component with a close button -->
+    <div *ngIf="isChatbotOpen" class="chat-window">
+      <button class="close-chat" (click)="toggleChatbot()">X</button>
+      <app-chatbot></app-chatbot>
+    </div>
+  </div>
+
 </body>

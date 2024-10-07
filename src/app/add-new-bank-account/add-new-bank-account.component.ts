@@ -16,9 +16,12 @@ export class AddNewBankAccountComponent implements OnInit {
   public selectedInstitutions: any[] = [];
   public linkAccountsTab: boolean = false;
   public selectBankTab: boolean = true;
-  linkedStatus: { [key: string]: boolean } = {};
+  linkedStatus: any = {};
+  currentInstitution: any;
   currentStep = 1;
   public accountTypes:any[]=["Savings","Current","Salary","Fixed Deposit","Recurring Deposit","NRI"];
+  isOtpModalVisible: boolean = false;
+
 
   constructor(private http: HttpClient) {}
 
@@ -83,11 +86,22 @@ export class AddNewBankAccountComponent implements OnInit {
     this.selectedInstitutions = [];
   }
 
-  linkAccount(institution: any): void {
-    this.linkedStatus[institution.fipName] = true;
+  linkAccount(institution: any) {
+    this.currentInstitution = institution;  // Store the current institution being linked
+    this.isOtpModalVisible = true;  // Open the OTP modal
+  }
+
+  // Function called when OTP modal is closed and OTP is verified
+  onCloseOtpModal() {
+    this.isOtpModalVisible = false;
+
+    // After OTP is verified successfully, mark the institution as linked
+    if (this.currentInstitution) {
+      this.linkedStatus[this.currentInstitution.fipName] = true;  // Set linked status for current institution
+    }
   }
   isLinked(institution: any): boolean {
-    return this.linkedStatus[institution.fipName] === true;
+    return !!this.linkedStatus[institution.fipName];
   }
   getRandomAccountType(accountTypes: string[]): string {
     const randomIndex = Math.floor(Math.random() * accountTypes.length);

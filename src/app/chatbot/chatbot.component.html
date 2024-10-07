@@ -1,0 +1,26 @@
+<div class="chatbot-container">
+  <!-- Display chat history -->
+  <div class="chat-box">
+    <div *ngFor="let message of messages">
+      <div [ngClass]="{'user-message': message.sender === 'user', 'bot-message': message.sender === 'bot'}">
+        {{ message.text }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Hardcoded Questions Section -->
+  <div *ngIf="!isAnswered" class="hardcoded-questions">
+    <h4>Frequently Asked Questions</h4>
+    <ul>
+      <li *ngFor="let faq of faqs">
+        <button (click)="sendHardcodedQuestion(faq.question, faq.answer)">{{ faq.question }}</button>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Input box for user messages -->
+  <div class="input-box">
+    <input [(ngModel)]="userMessage" placeholder="Type your message..." />
+    <button (click)="sendMessage()">Send</button>
+  </div>
+</div>
