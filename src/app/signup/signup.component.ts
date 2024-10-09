@@ -18,6 +18,6 @@ export class SignupComponent {
   }
 
   onSubmit() {
-    // Implement signup logic here
+
   }
 }

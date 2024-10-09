@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {AccountService} from "../account.service";
+import {AccountService} from "../services/account.service";
 
 @Component({
   selector: 'app-accounts',
@@ -9,14 +9,14 @@ import {AccountService} from "../account.service";
 export class AccountsComponent {
 isData:boolean=false;
 
-  accounts: any[] = []; // Holds account data
+  accounts: any[] = [];
   selectedAccount: any = null;
 
   constructor(private accountService: AccountService) { }
 
   ngOnInit(): void {
     this.accountService.getAccounts().subscribe(data => {
-      this.accounts = data.accounts; // Assuming the JSON structure has a key 'accounts'
+      this.accounts = data.accounts;
     });
   }
   showDetails(account: any): void {

@@ -24,18 +24,18 @@ body {
 }
 .add-transaction-button {
   position: absolute;
-  top: 10px; /* Adjust the top positioning */
-  right: 10px; /* Move the button to the right corner */
+  top: 10px;
+  right: 10px;
   padding: 10px 15px;
-  background-color: #007BFF; /* Customize the background color */
-  color: white; /* White text color */
+  background-color: #007BFF;
+  color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .add-transaction-button:hover {
-  background-color: #0056b3; /* Darken button on hover */
+  background-color: #0056b3;
 }
 .transaction-form{
   position: absolute;
@@ -47,15 +47,6 @@ label {
   font-weight: bold;
 }
 
-select {
-  padding: 8px;
-  font-size: 14px;
-  border-radius: 5px;
-  border: 1px solid;
-  width: 23%;
-}
-
-/* Payment options */
 .payment-options {
   display: flex;
   justify-content: space-between;
@@ -67,7 +58,7 @@ select {
   width: auto;
 }
 
-/* Tabs */
+
 .tab-container {
   display: flex;
   justify-content: space-between;
@@ -94,7 +85,7 @@ select {
   border-radius: 5px;
 }
 
-/* Table styling */
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -142,31 +133,65 @@ th, td {
   margin-top: 5%;
 }
 ul {
-  list-style-type: none; /* Remove bullet points */
+  list-style-type: none;
   padding: 0;
 }
 
 li.account-item {
-  margin-bottom: 15px; /* Add space between list items */
+  margin-bottom: 15px;
 }
 
 .custom-checkbox {
-  width: 18px; /* Customize the size of the checkbox */
+  width: 18px;
   height: 18px;
-  margin-right: 10px; /* Add space between checkbox and bank details */
-  accent-color: #007BFF; /* Customize checkbox color */
+  margin-right: 10px;
+  accent-color: #007BFF;
 }
 
 .bank-details {
   display: flex;
-  align-items: center; /* Align the bank name and account type on the same line */
+  align-items: center;
 }
 
 .bank-details strong {
   font-weight: bold;
-  margin-right: 10px; /* Add space between bank name and account type */
+  margin-right: 10px;
 }
 
 .bank-details span {
   margin-left: 5px;
+}
+body {
+  font-family: Arial, sans-serif;
+}
+
+.date-selector {
+  display: flex;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.dropdown {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+select {
+  padding: 5px;
+  font-size: 16px;
+  width: 100px;
+}
+#chart {
+  margin-top:12%;
+}
+#stacked-chart {
+  max-width: 650px;
+}
+.all-charts{
+  display: flex;
 }

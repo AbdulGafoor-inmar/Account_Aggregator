@@ -1,0 +1,49 @@
+<div class="budget-container">
+  <header>
+    <div class="date-selector">
+      <div class="dropdown">
+        <label>Year</label>
+        <select [(ngModel)]="selectedYear" (change)="filterTransactionsByDate()">
+          <option *ngFor="let year of availableYears" [value]="year">{{ year }}</option>
+        </select>
+      </div>
+
+      <div class="dropdown">
+        <label>Month</label>
+        <select [(ngModel)]="selectedMonth" (change)="filterTransactionsByDate()">
+          <option *ngFor="let month of availableMonths" [value]="month">{{ month }}</option>
+        </select>
+      </div>
+    </div>
+    <button (click)="toggleCreateBudgetForm()">Create a Budget</button>
+  </header>
+
+
+  <div *ngIf="showCreateBudgetForm">
+    <app-create-budget (budgetCreated)="addNewBudget($event.category, $event.amount)"></app-create-budget>
+  </div>
+
+
+  <div class="budget-summary">
+    <div class="budget-item" *ngFor="let category of budgetCategories">
+      <div class="category-details">
+        <span class="category-title">{{ category.name }}</span>
+        <span class="budget-amount">{{ category.spent }} of {{ category.total }}</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress"
+             [ngStyle]="{
+            'width': (category.spent / category.total > 1 ? '100%' : (category.spent / category.total * 100) + '%'),
+            'background-color': getBarColor(category)
+          }">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="leftover">
+    <p>You have <span [ngClass]="{'negative': totalLeftover < 0}">{{ totalLeftover | currency:'INR':'symbol' }}</span> left over in your budget.</p>
+  </div>
+
+</div>

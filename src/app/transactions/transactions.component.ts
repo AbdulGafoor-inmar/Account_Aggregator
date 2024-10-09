@@ -1,5 +1,43 @@
-import { Component, OnInit } from '@angular/core';
-import { AccountService } from '../account.service';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import { AccountService } from '../services/account.service';
+import {
+  ApexAxisChartSeries,
+  ApexChart,
+  ChartComponent,
+  ApexDataLabels,
+  ApexXAxis,
+  ApexPlotOptions,
+  ApexStroke,
+  ApexTitleSubtitle,
+  ApexYAxis,
+  ApexTooltip,
+  ApexFill,
+  ApexLegend
+} from "ng-apexcharts";
+import {
+  ApexNonAxisChartSeries,
+  ApexResponsive,
+} from "ng-apexcharts";
+
+export type ChartOptions = {
+  series: ApexNonAxisChartSeries;
+  chart: ApexChart;
+  responsive: ApexResponsive[];
+  labels: any;
+};
+export type StackedChartOptions = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  dataLabels: ApexDataLabels;
+  plotOptions: ApexPlotOptions;
+  xaxis: ApexXAxis;
+  yaxis: ApexYAxis;
+  stroke: ApexStroke;
+  title: ApexTitleSubtitle;
+  tooltip: ApexTooltip;
+  fill: ApexFill;
+  legend: ApexLegend;
+};
 
 @Component({
   selector: 'app-transactions',
@@ -11,9 +49,8 @@ export class TransactionsComponent implements OnInit {
   filteredTransactions: any[] = [];
   activeTab: string = 'All';
   accounts: any[] = [];
-  selectedAccounts: any[] = []; // Track selected accounts
+  selectedAccounts: any[] = [];
 
-  // List of possible transaction descriptions
   transactionDescriptions: string[] = [
     "ATM Withdrawal",
     "Online Shopping",
@@ -32,34 +69,240 @@ export class TransactionsComponent implements OnInit {
     "Investment Purchase",
     "Refund"
   ];
+  transactionCategory:string[]=["Utility","Food","Fuel","Shopping","Medical","Others"];
 
-  isAddingTransaction = false; // Controls whether the add transaction row is visible
-  newTransaction = { date: '', time: '', name: '', description: '', amount: 0, color: '' };
+  isAddingTransaction = false;
+  newTransaction = { date: '', time: '', name: '', description: '', category: '', amount: 0, color: '' };
 
+  selectedYear: number = new Date().getFullYear();
+  selectedMonth: number = new Date().getMonth() + 1;
+  availableYears: number[] = [2021, 2022, 2023, 2024];
+  availableMonths: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  public chartOptions: Partial<ChartOptions>;
+  public stackedCartOptions: Partial<StackedChartOptions>;
+  constructor(private accountService: AccountService) {
+    this.chartOptions = {
+      series: [this.getRandomAmount(),this.getRandomAmount(),this.getRandomAmount(),this.getRandomAmount(),
+      this.getRandomAmount(),this.getRandomAmount()],
+      chart: {
+        type: "donut"
+      },
+      labels: ["Utility","Food","Fuel","Shopping","Medical","Others"],
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              height: 400,
+              width: 1200
+            },
+            legend: {
+              position: "bottom",
+            },
+          }
+        }
+      ]
+    };
+    this.stackedCartOptions = {
+      series: [
+        {
+          name: "Utility",
+          data: [this.getRandomNumber(),this.getRandomNumber(),this.getRandomNumber(),this.getRandomNumber(),
+          ]
+        },
+        {
+          name: "Food",
+          data: [this.getRandomNumber(),this.getRandomNumber(),this.getRandomNumber(),this.getRandomNumber(),
+          ]    },
+        {
+          name: "Fuel",
+          data: [this.getRandomNumber(),this.getRandomNumber(),this.getRandomNumber(),this.getRandomNumber(),
+          ]    },
+        {
+          name: "Shopping",
+          data: [this.getRandomNumber(),this.getRandomNumber(),this.getRandomNumber(),this.getRandomNumber(),
+          ]    },
+        {
+          name: "Medical",
+          data: [this.getRandomNumber(),this.getRandomNumber(),this.getRandomNumber(),this.getRandomNumber(),
+          ]     },
+        {
+          name: "Others",
+          data: [this.getRandomNumber(),this.getRandomNumber(),this.getRandomNumber(),this.getRandomNumber()]
+        },
+      ],
+      chart: {
+        type: "bar",
+        height: 450,
+        width: 600,
+        stacked: true
+      },
+      plotOptions: {
+        bar: {
+          horizontal: true
+        }
+      },
+      stroke: {
+        width: 1,
+        colors: ["#fff"]
+      },
+      title: {
+        text: "Monthly Total"
+      },
+      xaxis: {
+        categories: ["Week 1","Week 2","Week 3","Week 4"],
+        labels: {
+          formatter: function(val) {
+            return "₹" + val;
+          }
+        }
+      },
+      yaxis: {
+        title: {
+          text: undefined
+        }
+      },
+      tooltip: {
+        y: {
+          formatter: function(val) {
+            return "₹" + val;
+          }
+        }
+      },
+      fill: {
+        opacity: 1
+      },
+      legend: {
+        position: "top",
+        horizontalAlign: "left",
+        offsetX: 40
+      }
+    };
+  }
 
-  constructor(private accountService: AccountService) { }
-
+  getDonutChart(){
+    this.chartOptions = {
+      series: [this.getRandomAmount(),this.getRandomAmount(),this.getRandomAmount(),this.getRandomAmount(),
+        this.getRandomAmount(),this.getRandomAmount()],
+      chart: {
+        type: "donut"
+      },
+      labels: ["Utility","Food","Fuel","Shopping","Medical","Others"],
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              height: 400,
+              width: 1200
+            },
+            legend: {
+              position: "bottom",
+            },
+          }
+        }
+      ]
+    };
+  }
+  getStackedBarChart(){
+    this.stackedCartOptions = {
+      series: [
+        {
+          name: "Utility",
+          data: [this.getRandomNumber(),this.getRandomNumber(),this.getRandomNumber(),this.getRandomNumber(),
+          ]
+        },
+        {
+          name: "Food",
+          data: [this.getRandomNumber(),this.getRandomNumber(),this.getRandomNumber(),this.getRandomNumber(),
+          ]    },
+        {
+          name: "Fuel",
+          data: [this.getRandomNumber(),this.getRandomNumber(),this.getRandomNumber(),this.getRandomNumber(),
+          ]    },
+        {
+          name: "Shopping",
+          data: [this.getRandomNumber(),this.getRandomNumber(),this.getRandomNumber(),this.getRandomNumber(),
+          ]    },
+        {
+          name: "Medical",
+          data: [this.getRandomNumber(),this.getRandomNumber(),this.getRandomNumber(),this.getRandomNumber(),
+          ]     },
+        {
+          name: "Others",
+          data: [this.getRandomNumber(),this.getRandomNumber(),this.getRandomNumber(),this.getRandomNumber()]
+        },
+      ],
+      chart: {
+        type: "bar",
+        height: 450,
+        width: 600,
+        stacked: true
+      },
+      plotOptions: {
+        bar: {
+          horizontal: true
+        }
+      },
+      stroke: {
+        width: 1,
+        colors: ["#fff"]
+      },
+      title: {
+        text: "Monthly Total"
+      },
+      xaxis: {
+        categories: ["Week 1","Week 2","Week 3","Week 4"],
+        labels: {
+          formatter: function(val) {
+            return "₹" + val;
+          }
+        }
+      },
+      yaxis: {
+        title: {
+          text: undefined
+        }
+      },
+      tooltip: {
+        y: {
+          formatter: function(val) {
+            return "₹" + val;
+          }
+        }
+      },
+      fill: {
+        opacity: 1
+      },
+      legend: {
+        position: "top",
+        horizontalAlign: "left",
+        offsetX: 40
+      }
+    };
+  }
   ngOnInit(): void {
-    // Get all accounts and generate transactions for each account
     this.accountService.getAccounts().subscribe(data => {
       this.accounts = data.accounts;
 
-      // Initially generate transactions for all accounts
       this.accounts.forEach(account => {
-        const accountTransactions = this.generateTransactions(100, account);
-        this.transactions = [...this.transactions, ...accountTransactions]; // Merge transactions
+        const accountTransactions = this.generateTransactions(4, account);
+        this.transactions = [...this.transactions, ...accountTransactions];
       });
 
-      // Initially filter to show 'All' transactions
       this.filterTransactions('All');
     });
   }
   addNewTransaction() {
     this.isAddingTransaction = true;
-    this.newTransaction = { date: '', time: '', name: '', description: '', amount: 0, color: '' }; // Reset form
+    this.newTransaction = { date: '', time: '', name: '', description: '', category: '', amount: 0, color: '' };
   }
 
-  // Save the new transaction
+  filterTransactionsByDate(): void {
+    this.getStackedBarChart();
+    this.getDonutChart();
+  }
+
   saveNewTransaction() {
     const transaction = {
       date: this.newTransaction.date,
@@ -67,52 +310,44 @@ export class TransactionsComponent implements OnInit {
       name: this.newTransaction.name,
       description: this.newTransaction.description,
       amount: this.newTransaction.amount,
-      color: this.newTransaction.amount >= 0 ? 'green' : 'red', // Green for positive, red for negative
+      color: this.newTransaction.amount >= 0 ? 'green' : 'red',
       isEditing: false
     };
 
-    // Add the new transaction to the list
     this.transactions.push(transaction);
 
-    // Reset the form and hide the add transaction row
     this.isAddingTransaction = false;
-    this.newTransaction = { date: '', time: '', name: '', description: '', amount: 0, color: '' };
+    this.newTransaction = { date: '', time: '', name: '', description: '', category: '', amount: 0, color: '' };
 
-    // Update the filtered transactions list
     this.filterTransactions(this.activeTab);
   }
 
-  // Cancel adding the new transaction
   cancelNewTransaction() {
-    this.isAddingTransaction = false; // Hide the add transaction row
+    this.isAddingTransaction = false;
   }
 
   onSelectionChange(account: any): void {
-    // Reset the transactions to only show transactions for selected accounts
     this.transactions = [];
 
-    // If the account is already selected, remove it from the selectedAccounts
     if (this.selectedAccounts.includes(account)) {
       this.selectedAccounts = this.selectedAccounts.filter(acc => acc !== account);
     } else {
-      this.selectedAccounts.push(account); // Add selected account to the list
+      this.selectedAccounts.push(account);
     }
 
-    // If no account is selected, show transactions for all accounts
     if (this.selectedAccounts.length === 0) {
       this.accounts.forEach(acc => {
         const accountTransactions = this.generateTransactions(100, acc);
-        this.transactions = [...this.transactions, ...accountTransactions]; // Merge transactions
+        this.transactions = [...this.transactions, ...accountTransactions];
       });
     } else {
-      // Generate transactions only for selected accounts
       this.selectedAccounts.forEach(acc => {
         const accountTransactions = this.generateTransactions(100, acc);
-        this.transactions = [...this.transactions, ...accountTransactions]; // Merge transactions
+        this.transactions = [...this.transactions, ...accountTransactions];
       });
     }
 
-    this.filterTransactions(this.activeTab);  // Update the filtered transactions
+    this.filterTransactions(this.activeTab);
   }
 
   filterTransactions(type: string): void {
@@ -130,14 +365,13 @@ export class TransactionsComponent implements OnInit {
 
     this.filteredTransactions.sort((a, b) => this.compareDates(b.date, a.date));
   }
-
   compareDates(date1: string, date2: string): number {
     const d1 = new Date(date1);
     const d2 = new Date(date2);
-    return d1.getTime() - d2.getTime(); // Ascending order, switch to d2 - d1 for descending
+    return d1.getTime() - d2.getTime();
   }
 
-  // Generate random transactions for an account
+
   generateTransactions(count: number, account: any): any[] {
     const transactions = [];
     for (let i = 0; i < count; i++) {
@@ -145,37 +379,39 @@ export class TransactionsComponent implements OnInit {
         date: this.getRandomDate(),
         time: this.getRandomTime(),
         name: this.getRandomName(account),
-        description: this.getRandomDescription(), // Assign a random description
+        description: this.getRandomDescription(),
+        category: this.getRandomCategory(),
         amount: this.getRandomAmount(),
-        color: this.getRandomColor(),  // Assign random green or red color
-        isEditing: false // Property to track edit mode
+        color: this.getRandomColor(),
+        isEditing: false
       });
     }
     return transactions;
   }
 
-  // Generate random name based on bank and account type
+
   getRandomName(account: any) {
     return `${account.bankName}-${account.accountType}`;
   }
 
-  // Generate random amount
+
   getRandomAmount() {
-    return Math.floor(Math.random() * 5000) + 1; // Random amount between 1 and 5000
+    return Math.floor(Math.random() * 5000) + 800;
   }
 
-  // Generate random date between Jan 1, 2020, and today
-  getRandomDate() {
-    const start = new Date(2020, 0, 1); // Start date: Jan 1, 2020
-    const end = new Date(); // Today's date
+  getRandomNumber() {
+    return Math.floor(Math.random() * 1000) + 100;
+  }
+
+
+  getRandomDate(): string {
+    const start = new Date(2020, 0, 1);
+    const end = new Date();
     const date = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = date.toLocaleString('default', { month: 'short' });
-    const year = date.getFullYear();
-    return `${day} ${month} ${year}`;
+    return date.toISOString().slice(0, 10);
   }
 
-  // Generate random time
+
   getRandomTime() {
     const hour = Math.floor(Math.random() * 12) + 1;
     const minute = String(Math.floor(Math.random() * 60)).padStart(2, '0');
@@ -183,30 +419,35 @@ export class TransactionsComponent implements OnInit {
     return `${hour}:${minute} ${ampm}`;
   }
 
-  // Generate random color (Green or Red) for the amount
+
   getRandomColor() {
     return Math.random() > 0.5 ? 'green' : 'red';
   }
 
-  // Generate random transaction description
+
   getRandomDescription() {
     const randomIndex = Math.floor(Math.random() * this.transactionDescriptions.length);
     return this.transactionDescriptions[randomIndex];
   }
 
-  // Enable edit mode for a transaction
+  getRandomCategory() {
+    const randomIndex = Math.floor(Math.random() * this.transactionCategory.length);
+    return this.transactionCategory[randomIndex];
+  }
+
+
   editTransaction(transaction: any): void {
     transaction.isEditing = true;
   }
 
-  // Save the edited transaction
+
   saveTransaction(transaction: any): void {
-    transaction.isEditing = false; // Exit edit mode
-    // Add logic to save the transaction if required (e.g., API call)
+    transaction.isEditing = false;
+
   }
 
-  // Cancel the edit
+
   cancelEdit(transaction: any): void {
-    transaction.isEditing = false; // Exit edit mode without saving
+    transaction.isEditing = false;
   }
 }

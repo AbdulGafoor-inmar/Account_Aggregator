@@ -22,13 +22,6 @@
 .plus-icon{
   padding-right: 10px;
 }
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-}
-
 body {
   background-color: #f5f5f5;
   padding: 20px;
@@ -119,13 +112,6 @@ th {
 .pending {
   color: orange;
 }
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-}
-
 body {
   background-color: #f9f9f9;
   padding: 20px;
@@ -140,7 +126,7 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Payment options */
+
 .payment-options {
   display: flex;
   justify-content: space-between;
@@ -152,7 +138,7 @@ body {
   width: auto;
 }
 
-/* Tabs */
+
 .tab-container {
   display: flex;
   justify-content: space-between;
@@ -177,7 +163,7 @@ body {
   overflow-x: auto;
 }
 
-/* Table styling */
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -198,7 +184,7 @@ th, td {
   border-radius: 5px;
   font-weight: bold;
 }
-/* Highlight row */
+
 .highlight {
   background-color: #f9f9f9;
   cursor: pointer;

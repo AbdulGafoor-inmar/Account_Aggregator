@@ -7,7 +7,7 @@
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  position: relative; /* Allow absolute positioning of input box */
+  position: relative;
 }
 
 .close-chat {
@@ -26,10 +26,10 @@
 }
 
 .chat-box {
-  flex-grow: 1; /* Take up the remaining space */
-  overflow-y: auto; /* Allow scrolling for the chat history */
+  flex-grow: 1;
+  overflow-y: auto;
   padding: 10px;
-  margin-bottom: 60px; /* Leave space for the input box */
+  margin-bottom: 60px;
 }
 
 .input-box {
@@ -38,7 +38,7 @@
   width: 100%;
   display: flex;
   padding: 10px;
-  box-sizing: border-box; /* Make sure padding is included in width */
+  box-sizing: border-box;
   background-color: white;
   border-top: 1px solid #ddd;
 }
@@ -53,15 +53,15 @@ input {
 
 button {
   padding: 10px;
-  background-color: #007bff;
-  color: white;
+  background-color: #cccccc;
+  color: black;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: gray;
 }
 
 .user-message {
@@ -78,4 +78,11 @@ button:hover {
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 10px;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li{
+  padding: 10px;
 }

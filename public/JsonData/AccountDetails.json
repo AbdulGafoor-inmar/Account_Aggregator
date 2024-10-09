@@ -24,7 +24,7 @@
     {
       "bankName": "Axis Bank",
       "accountNumber": "9876",
-      "accountType": "Credit Card",
+      "accountType": "Fixed Deposit",
       "accountBalance": "45000",
       "bankIconUrl": "https://www.onemoney.in/docs/img/bank_icons/axisbank_icon.png"
     },

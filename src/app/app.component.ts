@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import {NotificationService} from "./services/notification.service";
 
 @Component({
   selector: 'app-root',
@@ -8,11 +9,13 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   title = 'acc-agg-web';
-  activeTab: string = 'dashboard'; // Set a default active tab
+  activeTab: string = 'dashboard';
   showNavbar = true;
   isChatbotOpen = false;
-  constructor(private router: Router) {
-    // Listen to route changes to dynamically show/hide the navbar
+  showNotifications: boolean = false;
+  notifications: { message: string }[] = [];
+  constructor(private router: Router, private notificationService: NotificationService) {
+
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.showNavbar = !this.router.url.includes('/signup') && !this.router.url.includes('/login');
@@ -21,17 +24,23 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Listen for route changes and set the active tab accordingly
+
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        // Extract the current route after '/'
+
         const currentRoute = this.router.url.split('/')[1];
         this.setActiveTab(currentRoute);
       }
     });
+
+    this.notificationService.notifications$.subscribe(
+      notifications => this.notifications = notifications
+    );
   }
 
-  // Toggle the chatbot's visibility
+  toggleNotifications(): void {
+    this.showNotifications = !this.showNotifications;
+  }
   toggleChatbot() {
     this.isChatbotOpen = !this.isChatbotOpen;
   }
@@ -43,6 +52,10 @@ export class AppComponent implements OnInit {
   OnConsentsClick(): void {
     this.setActiveTab('consents');
     this.router.navigate(['/consents']);
+  }
+  OnBudgetClick(): void {
+    this.setActiveTab('budget');
+    this.router.navigate(['/budget']);
   }
   OnLogoutClick(): void {
     this.router.navigate(['/signup']);

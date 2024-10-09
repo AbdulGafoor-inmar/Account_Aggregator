@@ -13,9 +13,9 @@ export class AccountService {
   constructor(private http: HttpClient) { }
 
   getAccounts(): Observable<any> {
-    return this.http.get(this.AccountDetailsJsonUrl); // Make the HTTP GET request
+    return this.http.get(this.AccountDetailsJsonUrl);
   }
   getTransactions(): Observable<any> {
-    return this.http.get(this.TransactionsJsonUrl); // Make the HTTP GET request
+    return this.http.get(this.TransactionsJsonUrl);
   }
 }

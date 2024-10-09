@@ -18,7 +18,9 @@ import { SignupComponent } from './signup/signup.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { OtpDialogComponent } from './otp-dialog/otp-dialog.component';
 import { ChatbotComponent } from './chatbot/chatbot.component';
-
+import { NgApexchartsModule } from "ng-apexcharts";
+import { BudgetComponent } from './budget/budget.component';
+import { CreateBudgetComponent } from './create-budget/create-budget.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -32,6 +34,7 @@ const appRoutes: Routes = [
   { path: 'inactive-consents', pathMatch: 'full' , component: InactiveConsentComponent },
   { path: 'add-bankaccount', pathMatch: 'full' , component: AddNewBankAccountComponent },
   { path: 'transactions', pathMatch: 'full' , component: TransactionsComponent },
+  { path: 'budget', pathMatch: 'full' , component: BudgetComponent },
   { path: '**', redirectTo: '/login' }
 ];
 @NgModule({
@@ -47,15 +50,18 @@ const appRoutes: Routes = [
     SignupComponent,
     LoginPageComponent,
     OtpDialogComponent,
-    ChatbotComponent
+    ChatbotComponent,
+    BudgetComponent,
+    CreateBudgetComponent
   ],
     imports: [
         BrowserModule,
         HttpClientModule,
         AppRoutingModule,
+      NgApexchartsModule,
         RouterModule.forRoot(
             appRoutes,
-            {enableTracing: false} // <-- debugging purposes only
+            {enableTracing: false}
         ),
         FormsModule,
     ],

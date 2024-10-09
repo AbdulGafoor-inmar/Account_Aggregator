@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
-import {AccountService} from "../account.service";
+import {AccountService} from "../services/account.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -9,14 +9,14 @@ import {AccountService} from "../account.service";
 })
 export class DashboardComponent {
 
-  accounts: any[] = []; // Holds account data
+  accounts: any[] = [];
   activeTab: string = 'All';
   filteredTransactions: any[] = [];
   constructor(private accountService: AccountService) { }
 
   ngOnInit(): void {
     this.accountService.getAccounts().subscribe(data => {
-      this.accounts = data.accounts; // Assuming the JSON structure has a key 'accounts'
+      this.accounts = data.accounts;
     });
     this.accountService.getTransactions().subscribe(data=>{
       this.filteredTransactions=data;

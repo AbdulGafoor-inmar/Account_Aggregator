@@ -54,7 +54,7 @@
     </div>
   </div>
 
-  <!-- LinkAccounts Tab -->
+
   <div *ngIf="linkAccountsTab" class="bank-card">
     <div *ngFor="let institution of selectedInstitutions" class="bank-details">
       <div style="padding-right: 30px; width: 150px; height: 60px">
@@ -69,7 +69,7 @@
 
         <div style="padding-right: 30px; width: 200px; height: 60px">
           <div class="account-type">
-            <i class="fas fa-check-circle"></i> <!-- Checkmark Icon -->
+            <i class="fas fa-check-circle"></i>
             <span>{{ institution.accountType }}</span>
           </div>
           <div class="account-number">XXXXXXXX{{ institution.accountNumber }}</div>

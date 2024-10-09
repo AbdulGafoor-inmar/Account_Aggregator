@@ -34,11 +34,11 @@ export class AddNewBankAccountComponent implements OnInit {
     this.http.get<FipListResponse>(url).subscribe(
       response => {
         this.banksList = response;
-        this.filteredInstitutions = this.banksList.fipList; // Initialize filteredInstitutions with the full list
+        this.filteredInstitutions = this.banksList.fipList;
         this.filteredInstitutions = this.banksList.fipList.map(institution => ({
-          ...institution, // Spread the original institution properties
-          accountType: this.getRandomAccountType(this.accountTypes), // Add random account type
-          accountNumber: this.generateRandomFourDigits() // Add random 4-digit account number
+          ...institution,
+          accountType: this.getRandomAccountType(this.accountTypes),
+          accountNumber: this.generateRandomFourDigits()
         }));
       },
       error => {
@@ -47,14 +47,14 @@ export class AddNewBankAccountComponent implements OnInit {
     );
   }
 
-  // Filter institutions based on the search term
+
   filterInstitutions(): void {
     if (this.searchTerm) {
       this.filteredInstitutions = this.banksList.fipList.filter(institution =>
         institution.fipName.toLowerCase().includes(this.searchTerm.toLowerCase())
       );
     } else {
-      this.filteredInstitutions = this.banksList.fipList; // Reset to the full list when search term is empty
+      this.filteredInstitutions = this.banksList.fipList;
     }
   }
 
@@ -63,7 +63,7 @@ export class AddNewBankAccountComponent implements OnInit {
     if (index === -1) {
       this.selectedInstitutions.push(institution);
     } else {
-      this.selectedInstitutions.splice(index, 1); // Deselect if clicked again
+      this.selectedInstitutions.splice(index, 1);
     }
   }
 
@@ -87,17 +87,17 @@ export class AddNewBankAccountComponent implements OnInit {
   }
 
   linkAccount(institution: any) {
-    this.currentInstitution = institution;  // Store the current institution being linked
-    this.isOtpModalVisible = true;  // Open the OTP modal
+    this.currentInstitution = institution;
+    this.isOtpModalVisible = true;
   }
 
-  // Function called when OTP modal is closed and OTP is verified
+
   onCloseOtpModal() {
     this.isOtpModalVisible = false;
 
-    // After OTP is verified successfully, mark the institution as linked
+
     if (this.currentInstitution) {
-      this.linkedStatus[this.currentInstitution.fipName] = true;  // Set linked status for current institution
+      this.linkedStatus[this.currentInstitution.fipName] = true;
     }
   }
   isLinked(institution: any): boolean {

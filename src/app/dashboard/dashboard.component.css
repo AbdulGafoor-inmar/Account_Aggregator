@@ -69,7 +69,7 @@
   height: 250px;
   background: linear-gradient(to right top, rgb(76, 73, 237) 30%, rgb(10, 6, 244));
   color: #fff;
-  border-radius: 30px;
+  border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   position: relative;
   overflow: hidden;
@@ -133,7 +133,7 @@
   width: 850px;
   background: white;
   color: #343c6a;
-  border-radius: 30px;
+  border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   position: relative;
   overflow: hidden;
@@ -177,7 +177,7 @@
   align-items: flex-end;
   height: 250px;
   width: 520px;
-  border-radius: 30px;
+  border-radius: 10px;
   background-color: #fff;
   padding: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -327,6 +327,10 @@ flex-basis: 25%;
   padding: 20px;
   color: #fff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  margin: 20px;
+  max-height: max-content;
 }
 
 .balance-info {
@@ -350,14 +354,16 @@ flex-basis: 25%;
   height: 128px;
 }
 .container {
-  max-width: 960px;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  overflow-y: auto;
-  max-height: 800px;
-  margin: 30px auto;
+  containerwidth: 850px;
+  background: white;
+  color: #343c6a;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  margin: 20px;
+  padding: 30px;
+  max-height: max-content;
 }
 
 .bank-selection-section {
@@ -375,7 +381,7 @@ select {
   width: 23%;
 }
 
-/* Payment options */
+
 .payment-options {
   display: flex;
   justify-content: space-between;
@@ -387,7 +393,7 @@ select {
   width: auto;
 }
 
-/* Tabs */
+
 .tab-container {
   display: flex;
   justify-content: space-between;
@@ -414,7 +420,7 @@ select {
   border-radius: 5px;
 }
 
-/* Table styling */
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -440,7 +446,7 @@ th, td {
   font-weight: bold;
 }
 
-/* Highlight row */
+
 .highlight {
   background-color: #f9f9f9;
   cursor: pointer;
